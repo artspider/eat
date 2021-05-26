@@ -28,7 +28,7 @@
     <script src="{{ mix('js/notifications.js') }}"></script>
 </head>
 
-<body class="bg-light-back h-screen antialiased leading-none">
+<body class="bg-eat-white-500 h-screen antialiased leading-none">
     <main class="">
         {{$slot}}
     </main>
