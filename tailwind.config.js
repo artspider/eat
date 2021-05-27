@@ -12,9 +12,12 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ["Nunito", ...defaultTheme.fontFamily.sans],
+                montserrat: ["Montserrat"],
+                raleway: ["Raleway"],
             },
         },
         colors: {
+            transparent: "transparent",
             "eat-white": {
                 50: "#ffffff",
                 100: "#ffffff",

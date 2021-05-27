@@ -20,3 +20,15 @@ const Toast = swal.mixin({
     },
 });
 window.Toast = Toast;
+
+function fireModal(message, text, image) {
+    swal.fire({
+        title: '<h2 class="text-eat-pink-500">' + message + "</h2>",
+        text: text,
+        imageUrl: image,
+        imageWidth: 400,
+        imageHeight: 200,
+        imageAlt: "Custom image",
+    });
+}
+window.fireModal = fireModal;

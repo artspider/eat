@@ -1,5 +1,24 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/notifications.js": "/js/notifications.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/fonts/generator_config.txt": "/css/fonts/generator_config.txt",
+    "/css/fonts/gotham_black_900-demo.html": "/css/fonts/gotham_black_900-demo.html",
+    "/css/fonts/gotham_black_900-webfont.woff": "/css/fonts/gotham_black_900-webfont.woff",
+    "/css/fonts/gotham_black_900-webfont.woff2": "/css/fonts/gotham_black_900-webfont.woff2",
+    "/css/fonts/gotham_bold_700-demo.html": "/css/fonts/gotham_bold_700-demo.html",
+    "/css/fonts/gotham_bold_700-webfont.woff": "/css/fonts/gotham_bold_700-webfont.woff",
+    "/css/fonts/gotham_bold_700-webfont.woff2": "/css/fonts/gotham_bold_700-webfont.woff2",
+    "/css/fonts/gotham_book_400-demo.html": "/css/fonts/gotham_book_400-demo.html",
+    "/css/fonts/gotham_book_400-webfont.woff": "/css/fonts/gotham_book_400-webfont.woff",
+    "/css/fonts/gotham_book_400-webfont.woff2": "/css/fonts/gotham_book_400-webfont.woff2",
+    "/css/fonts/gotham_light_300-demo.html": "/css/fonts/gotham_light_300-demo.html",
+    "/css/fonts/gotham_light_300-webfont.woff": "/css/fonts/gotham_light_300-webfont.woff",
+    "/css/fonts/gotham_light_300-webfont.woff2": "/css/fonts/gotham_light_300-webfont.woff2",
+    "/css/fonts/gotham_rounded_light_100r-demo.html": "/css/fonts/gotham_rounded_light_100r-demo.html",
+    "/css/fonts/gotham_rounded_light_100r-webfont.woff": "/css/fonts/gotham_rounded_light_100r-webfont.woff",
+    "/css/fonts/gotham_rounded_light_100r-webfont.woff2": "/css/fonts/gotham_rounded_light_100r-webfont.woff2",
+    "/css/fonts/gotham_rounded_medium500r-demo.html": "/css/fonts/gotham_rounded_medium500r-demo.html",
+    "/css/fonts/gotham_rounded_medium500r-webfont.woff": "/css/fonts/gotham_rounded_medium500r-webfont.woff",
+    "/css/fonts/gotham_rounded_medium500r-webfont.woff2": "/css/fonts/gotham_rounded_medium500r-webfont.woff2"
 }
