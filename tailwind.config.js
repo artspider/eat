@@ -15,6 +15,9 @@ module.exports = {
                 montserrat: ["Montserrat"],
                 raleway: ["Raleway"],
             },
+            width: {
+                '110': '27rem',
+              },
         },
         colors: {
             transparent: "transparent",
