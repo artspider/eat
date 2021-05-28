@@ -41,7 +41,7 @@
             
 
             <div class="flex-col items-center justify-center mt-10 w-full">
-                <x-utils.button-login color=eat-white textcolor=eat-fuccia class="w-full text-center justify-center xl:bg-eat-fuccia-500 xl:py-4 px-7 xl:text-eat-white-500 xl:text-xl">
+                <x-utils.button-login color=eat-white textcolor=eat-fuccia class="w-full text-center justify-center xl:bg-eat-fuccia-500 xl:py-4 px-7 xl:text-eat-white-500 xl:text-xl xl:hover:bg-eat-fuccia-300">
                     {{ __('Login') }}
                 </x-utils.button-login>
                 <div class="text-center text-eat-white-700 text-xs mt-2 xl:text-lg xl:text-eat-pink-500">
