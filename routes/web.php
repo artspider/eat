@@ -27,3 +27,4 @@ Route::get('/admin/users', App\Http\Livewire\Admin\Users::class)
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('eat-welcome');
 })->name('dashboard');
+
