@@ -7,3 +7,25 @@
 [x-cloak] {
     display: none !important;
 }
+
+.tippy-box[data-theme~="tomato"] {
+    background-color: #fcfcf4;
+    color: #516400;
+    border: 1px solid #516400;
+}
+
+.tippy-box[data-theme~="tomato"][data-placement^="top"] > .tippy-arrow::before {
+    border-top-color: #516400;
+}
+.tippy-box[data-theme~="tomato"][data-placement^="bottom"]
+    > .tippy-arrow::before {
+    border-bottom-color: #516400;
+}
+.tippy-box[data-theme~="tomato"][data-placement^="left"]
+    > .tippy-arrow::before {
+    border-left-color: #516400;
+}
+.tippy-box[data-theme~="tomato"][data-placement^="right"]
+    > .tippy-arrow::before {
+    border-right-color: #516400;
+}
