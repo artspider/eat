@@ -40,9 +40,12 @@
 
 		<!-- Menu Lateral -->
 		<div class="hidden lg:block w-1/5 bg-eat-white-50 shadow-lg h-screen sticky top-0 " x-show="open"
-			x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90"
-			x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-300"
-			x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
+			x-transition:enter="transition ease-out duration-300"
+			x-transition:enter-start="opacity-0 transform scale-90"
+			x-transition:enter-end="opacity-100 transform scale-100"
+			x-transition:leave="transition ease-in duration-300"
+			x-transition:leave-start="opacity-100 transform scale-100"
+			x-transition:leave-end="opacity-0 transform scale-90">
 			<div class="h-20 bg-eat-fuccia-500 mb-4">
 				<img class="h-20 w-44 mx-auto" src=" {{url('/img/logo_fuccia.png')}} " alt="">
 			</div>
@@ -60,6 +63,15 @@
 					</x-slot>
 					<x-utils.text-menu>Usuarios</x-utils.text-menu>
 				</x-utils.menu-item>
+
+				<div class=" pl-7 pb-4 text-eat-olive-700 hover:text-eat-pink-500">
+					<form method="POST" action="{{ route('logout') }}">
+						@csrf
+						<x-auth.logout />
+					</form>
+				</div>
+
+
 			</div>
 		</div>
 

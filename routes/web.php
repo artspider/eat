@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::get('/admin', function () {
     return view('eat-welcome');
 })
@@ -16,6 +20,10 @@ Route::get('/admin/users', App\Http\Livewire\Admin\Users::class)
 ->middleware('is_admin')
 ->name('admin-users');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+/* Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
+})->name('dashboard'); */
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('eat-welcome');
 })->name('dashboard');
