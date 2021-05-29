@@ -29,7 +29,8 @@
                 Restablecer contraseña
             </x-utils.text>
         </div>
-        @isset($resetPassword)
+
+        @if ($resetPassword)
         <div class="relative mt-4">
             <input id="txtPassword" wire:model="password"
                 class="  rounded-lg shadow-lg pl-11 border border-transparent focus:bg-eat-white-500 focus:outline-none focus:ring-2 focus:ring-eat-fuccia-600 focus:border-transparent w-full bg-eat-white-700 mb-2"
@@ -45,8 +46,7 @@
                 placeholder="Confirmar contraseña" type="password">
             <x-icons.password height="h-4" width="w-4" class="text-eat-olive-700 absolute w-5 top-3 left-3" />
         </div>
-        @endisset
-        @empty($resetPassword)
+        @else
         <div class="relative mt-4">
             <input disabled id="txtPassword" wire:model="password"
                 class="disabled:opacity-50  rounded-lg shadow-lg pl-11 border border-transparent focus:bg-eat-white-500 focus:outline-none focus:ring-2 focus:ring-eat-fuccia-600 focus:border-transparent w-full bg-eat-white-700 mb-2"
@@ -62,7 +62,8 @@
                 placeholder="Confirmar contraseña" type="password">
             <x-icons.password height="h-4" width="w-4" class="text-gray-300 absolute w-5 top-3 left-3" />
         </div>
-        @endempty
+        @endif
+
 
 
 

@@ -48,6 +48,8 @@ class EditUser extends Component
         $this->phone=$this->user->phone;
         $this->address=$this->user->address;
         $this->role=$role;
+        $this->resetPassword=false;
+        $this->photoHasChanged = false;
         /* $this->photo=$this->user->profile_photo_path; */
     }
 
@@ -55,6 +57,7 @@ class EditUser extends Component
     {        
         if($this->resetPassword){
             logger($this->resetPassword);
+            
         }
     }
 
@@ -111,8 +114,9 @@ class EditUser extends Component
         $this->address="";
         $this->role="";
         $this->photo="";
-
+        $this->resetPassword=false;
+        $this->photoHasChanged = false;
         
-        $this->emit('success', 'Se ha actualizado el usuario');
+        $this->emit('success', 'Se ha actualizado el usuario');        
     }
 }
