@@ -29,8 +29,10 @@
 					@forelse ($users as $user)
 					<tr
 						class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
-						<td class="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
-							<span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-montserrat uppercase">
+						<td
+							class="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
+							<span
+								class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-montserrat uppercase">
 								Nombre
 							</span>
 							<div class="flex items-center">
@@ -46,7 +48,8 @@
 						</td>
 						<td
 							class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
-							<span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Rol</span>
+							<span
+								class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Rol</span>
 							@forelse ($user->getRoleNames() as $role)
 							<p class="text-sm font-montserrat">{{$role}}</p>
 							@empty
@@ -63,7 +66,8 @@
 								<p class="text-sm font-montserrat">{{$user->address}}</p>
 								@endisset
 								@empty($user->address)
-								<p class="text-sm font-montserrat text-eat-white-500 bg-eat-fuccia-500">Sin dirección asignada</p>
+								<p class="text-sm font-montserrat text-eat-white-500 bg-eat-fuccia-500">Sin dirección
+									asignada</p>
 								@endempty
 							</span>
 						</td>
@@ -76,7 +80,8 @@
 								<p class="text-sm font-montserrat">{{$user->phone}}</p>
 								@endisset
 								@empty($user->phone)
-								<p class="text-sm font-montserrat text-eat-white-500 bg-eat-fuccia-500">Sin teléfono asignado</p>
+								<p class="text-sm font-montserrat text-eat-white-500 bg-eat-fuccia-500">Sin teléfono
+									asignado</p>
 								@endempty
 							</span>
 						</td>
@@ -85,12 +90,14 @@
 							<span
 								class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Acciones</span>
 							<div class="flex justify-center">
-								<a href="#" data-title='Edita los datos del usuario' data-placement="left"
+								<a href="#" id="editUser" onclick="editUser(this,{{$user->id}})"
+									data-title='Edita los datos del usuario' data-placement="left"
 									class="tooltip_usr text-eat-green-400 hover:text-eat-green-600 underline">
 									<x-icons.edit />
 								</a>
-								<a href="#" onclick="confirmAction('deleteUser', {{ $user }});" data-title='Elimina el usuario'
-									data-placement="top" class="tooltip_usr text-eat-fuccia-500 hover:text-eat-fuccia-600 underline pl-2">
+								<a href="#" onclick="confirmAction('deleteUser', {{ $user }});"
+									data-title='Elimina el usuario' data-placement="top"
+									class="tooltip_usr text-eat-fuccia-500 hover:text-eat-fuccia-600 underline pl-2">
 									<x-icons.remove />
 								</a>
 							</div>
@@ -117,6 +124,12 @@
 				<livewire:admin.create-user />
 			</div>
 		</dialog>
+
+		<dialog id="editUserDialog" class="bg-gray-700 bg-opacity-50 z-10 absolute top-0 w-screen h-screen">
+			<div class="w-full h-full flex justify-center items-center">
+				<livewire:admin.edit-user :user="$user->id" />
+			</div>
+		</dialog>
 	</div>
 
 </div>
@@ -136,15 +149,28 @@
 );
 </script>
 <script>
+	function editUser(id, key){
+		Livewire.emit('editUser', key);
+		editUserDialog.showModal();
+	}
+</script>
+<script>
 	(function() {
     var createUser = document.getElementById('createUser');
+	var editUser = document.getElementById('editUser');
     var cancelButton = document.getElementById('cancel');
     var userDialog = document.getElementById('userDialog');
+	var editUserDialog = document.getElementById('editUserDialog');
 
-    // Update button opens a modal dialog
+    // opens a modal dialog
     createUser.addEventListener('click', function() {
       userDialog.showModal();
     });
+
+	/* editUser.addEventListener('click', function() {
+		Livewire.emit('editUser', key);
+		editUserDialog.showModal();
+    }); */
 
    
   })();
@@ -158,5 +184,20 @@
 					title: thimsg
 			});
 	})
+</script>
+<script>
+	function EnableDisablePassword(chkPassword) {
+        var txtPassword = document.getElementById("txtPassword");
+		var txtPasswordVer = document.getElementById("txtPasswordVer");
+		if(chkPassword.checked){
+			alert('checado');
+			txtPassword.disabled = true;
+			txtPasswordVer.disabled = true;
+		}else{
+			txtPassword.disabled = false;
+			txtPasswordVer.disabled = false;
+		}
+        
+    }
 </script>
 @endpush
