@@ -15,7 +15,7 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <div>
+<!--                 <div>
                     <x-jet-label for="email" value="{{ __('Email') }}" />
                     <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                         required autofocus />
@@ -25,12 +25,16 @@
                     <x-jet-label for="password" value="{{ __('Password') }}" />
                     <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required
                         autocomplete="current-password" />
+<<<<<<< HEAD
                 </div> --}}
+=======
+                </div> -->
+>>>>>>> 72396efab4545c3d2a7cac705e6a048ae316e63e
 
                 <form class="xl:bg-eat-white-500 xl:rounded-3xl xl:px-20 xl:py-20 2xl:py-36" method="POST"
                     action="{{ route('login') }}">
                     @csrf
-                    <h1 class="hidden xl:block text-center xl:pb-7 xl:text-4xl font-bold text-eat-fuccia-500 ">
+                    <h1 class="hidden xl:block text-center xl:pb-7 2xl:pt-8 xl:text-4xl font-bold text-eat-fuccia-500 ">
                         Bienvenido a eat</h1>
                     <div class="">
 
@@ -56,23 +60,21 @@
                             <label for="remember_me" class="flex items-center text-eat-white-500">
                                 <x-jet-checkbox class="xl:w-6 xl:h-6" id="remember_me" name="remember" />
                                 <span
-                                    class="ml-2 text-sm text-gray-600 xl:text-eat-fuccia-500 xl:text-lg">{{ __('Recordar cuenta') }}</span>
+                                    class="ml-2 text-sm text-eat-white-500 xl:text-eat-fuccia-500 xl:text-lg">{{ __('Recordar cuenta') }}</span>
                             </label>
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-end mt-4">
-                        @if (Route::has('password.request'))
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900"
-                            href="{{ route('password.request') }}">
-                            {{ __('Forgot your password?') }}
-                        </a>
-                        @endif
-
-                        <x-jet-button class="ml-4">
-                            {{ __('Log in') }}
-                        </x-jet-button>
-                    </div>
+                    <div class="flex-col items-center justify-center mt-10 w-full">
+                <x-utils.button-login color=eat-white textcolor=eat-fuccia class="w-full text-center justify-center xl:bg-eat-fuccia-500 xl:py-4 px-7 xl:text-eat-white-500 xl:text-xl xl:hover:bg-eat-fuccia-300">
+                    {{ __('Login') }}
+                </x-utils.button-login>
+                <div class="text-center text-eat-white-700 text-xs mt-2 xl:text-lg xl:text-eat-pink-500">
+                    <p >¿Tienes problemas para iniciar sesion?</p>
+                    <p>Ponte en contacto con el Admin</p>
+                </div>
+                
+            </div>
                 </form>
     </x-jet-authentication-card>
 </x-guest-layout>
