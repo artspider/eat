@@ -1,12 +1,12 @@
 <x-guest-layout>
     <x-jet-authentication-card>
 
-        <div>
+       
             <x-slot name="logo">
                 <x-jet-authentication-card-logo />
             </x-slot>
 
-            @if (session('status'))
+           {{--  @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}
             </div>
@@ -25,7 +25,7 @@
                     <x-jet-label for="password" value="{{ __('Password') }}" />
                     <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required
                         autocomplete="current-password" />
-                </div>
+                </div> --}}
 
                 <form class="xl:bg-eat-white-500 xl:rounded-3xl xl:px-20 xl:py-20 2xl:py-36" method="POST"
                     action="{{ route('login') }}">
