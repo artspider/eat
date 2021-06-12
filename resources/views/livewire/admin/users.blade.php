@@ -113,7 +113,7 @@
 				</tbody>
 			</table>
 			<div class="flex justify-end mt-4">
-				<x-utils.button id="createUser" color="eat-olive">
+				<x-utils.button  id="createUser" color="eat-olive">
 					Crear usuario
 				</x-utils.button>
 			</div>
@@ -148,6 +148,7 @@
 },
 );
 </script>
+
 <script>
 	function editUser(id, key){
 		Livewire.emit('editUser', key);

@@ -22,6 +22,7 @@ class Users extends Component
     public function mount()
     {
         $this->users = User::all();
+        
     }
 
     public function render()
@@ -37,4 +38,6 @@ class Users extends Component
         $user->delete();
         $this->emit('success', 'Se elimino el usuario');        
     }
+
+   
 }

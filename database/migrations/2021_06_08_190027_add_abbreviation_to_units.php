@@ -14,7 +14,7 @@ class AddAbbreviationToUnits extends Migration
     public function up()
     {
         Schema::table('units', function (Blueprint $table) {
-            $table->string('abbreviation',10);
+            $table->string('abbreviation',10)->nullable();
         });
     }
 

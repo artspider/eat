@@ -16,13 +16,28 @@ Route::get('/admin', function () {
 ->middleware('is_admin')
 ->name('admin-dashboard'); */
 
-Route::get('/admin/users', App\Http\Livewire\Admin\Users::class)
-->middleware('is_admin')
-->name('admin-users');
+Route::prefix('admin')->group(function () {
+    Route::get('/users', App\Http\Livewire\Admin\Users::class)
+    ->middleware('is_admin')
+    ->name('admin-users');
 
-/* Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard'); */
+    Route::group(['middleware' => ['role:superadmin|ceo|manager|chef']], function () {
+        Route::get('/products', App\Http\Livewire\Admin\Products::class)
+        ->name('admin-products');
+
+        Route::get('/products/create', App\Http\Livewire\Admin\ProductCreate::class)
+        ->name('admin-products-create');
+
+        Route::get('/products/edit/{product:slug}', App\Http\Livewire\Admin\ProductEdit::class)
+        ->name('admin-products-edit');
+    });
+
+    /* Route::group(['middleware' => ['role:superadmin|ceo|manager|chef']], function () {
+        Route::get('/products/create', App\Http\Livewire\Admin\ProductCreate::class)
+        ->name('admin-products-create');
+    }); */
+});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('eat-welcome');

@@ -16,7 +16,7 @@ class CreateUnitsTable extends Migration
         Schema::create('units', function (Blueprint $table) {
             $table->id();
             $table->string('unit',30);
-            $table->set('type', ['solid', 'weight', 'temperature', 'liquid', 'volume']);
+            $table->enum('type', ['solid', 'weight', 'temperature', 'liquid', 'volume']);
             $table->string('equivalence')->nullable();
             $table->string('slug')->nullable();
             $table->timestamps();
