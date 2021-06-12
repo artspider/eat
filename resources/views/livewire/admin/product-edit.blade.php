@@ -16,7 +16,6 @@
             placeholder="Ingresa el nombre del nuevo producto"
             class=""
           />
-
           <div class="mt-6">
             <div x-data="{open: false}">
               <label for="categoria" class="block text-sm font-medium leading-5 text-eat-olive-700">Categoria</label>
