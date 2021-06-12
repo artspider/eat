@@ -4,10 +4,15 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\Product;
+use Livewire\WithPagination;
 
 class Products extends Component
 {
-    public $products;
+    use WithPagination;
+
+    protected $queryString = ['search' => ['except' => '']];
+
+    public $search;
 
     protected $listeners = [
         'success' => 'newProduct',
@@ -16,18 +21,19 @@ class Products extends Component
 
     public function newProduct()
     {
-        $this->products = Product::all();
+        
     }
 
     public function mount()
     {
-        $this->products = Product::all();
+        
     }
 
     public function render()
     {
         return view('livewire.admin.products',[
-            'products' => $this->products
+            'products' => Product::where('name', 'LIKE', "%{$this->search}%")
+                                    ->paginate(5)
         ])
         ->layout('components.layouts.master');
     }
@@ -38,9 +44,9 @@ class Products extends Component
         $this->emit('success', 'Se elimino el producto');      
     }
 
-    public function mensaje()
+    public function clear()
     {
-        //$this->emit('prueba', 'Mensaje'); 
-        $this->emit('redirect', 'Otro mensaje');
+        $this->search = '';
+        $this->page = 1;
     }
 }

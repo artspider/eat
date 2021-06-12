@@ -4,7 +4,29 @@
     <div class="bg-white rounded-md shadow-md p-10 ">
         <x-utils.subtitle class="mb-4">Lista de productos</x-utils.subtitle>
         <hr class=" border-eat-olive-50 mb-6 ">
-        @if ($products)
+
+        <div class="flex w-full ">
+          <div class="w-1/3 relative">
+            <x-utils.text-input
+              wire:model="search"
+              type="text"
+              label=""                  
+              :required="true"
+              placeholder="Buscar item"
+              class="mb-4 rounded-md"
+            />
+            <div class="absolute top-0 right-12 cursor-pointer">
+              <x-icons.search class=" " />
+            </div>          
+          </div>
+          <div class="w-1/3 ">
+            <x-utils.button wire:click="clear" class="h-10 ml-4 shadow-md" color="eat-olive">Limpiar</x-utils.button>
+          </div>
+          
+        </div>
+        
+        
+        @if ($products && $products->count())
         <table class="border-collapse w-full">
           <thead>
             <tr>
@@ -97,16 +119,23 @@
                 </div>
   
               </td>
-            </tr>  
+            </tr>
+            
             @empty
             @endforelse
           </tbody>
         </table>
+        <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
+          {{ $products->links() }}
+        </div>
         @else
         <x-icons.not-found />
         <x-utils.text class="text-center mb-6">¡Al parecer no hay productos! Puedes agregar haciendo clic en el botón AGREGAR que esta abajo</x-utils.text>
         <hr class=" border-eat-olive-50 mb-6 ">
-        @endif        
+        @endif
+        
+        
+
         <div class="flex justify-end mt-4">
           <x-utils.button id="createProduct" color="eat-olive" onclick="location.href='/admin/products/create'">
             Agregar
