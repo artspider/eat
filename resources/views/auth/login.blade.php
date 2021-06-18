@@ -25,11 +25,10 @@
                     <x-jet-label for="password" value="{{ __('Password') }}" />
                     <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required
                         autocomplete="current-password" />
-<<<<<<< HEAD
-                </div> --}}
-=======
-                </div> -->
->>>>>>> 72396efab4545c3d2a7cac705e6a048ae316e63e
+                </div> 
+
+                </div> a-->--}}
+
 
                 <form class="xl:bg-eat-white-500 xl:rounded-3xl xl:px-20 xl:py-20 2xl:py-36" method="POST"
                     action="{{ route('login') }}">
