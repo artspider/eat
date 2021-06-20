@@ -5,8 +5,8 @@
         <x-utils.subtitle class="mb-4">Lista de productos</x-utils.subtitle>
         <hr class=" border-eat-olive-50 mb-6 ">
 
-        <div class="flex w-full ">
-          <div class="w-1/3 relative">
+        <div class="md:flex w-full">
+          <div class="w-full md:w-1/3 relative">
             <x-utils.text-input
               wire:model="search"
               type="text"
@@ -19,8 +19,8 @@
               <x-icons.search class=" " />
             </div>          
           </div>
-          <div class="w-1/3 ">
-            <x-utils.button wire:click="clear" class="h-10 ml-4 shadow-md" color="eat-olive">Limpiar</x-utils.button>
+          <div class="w-full md:w-1/3 ">
+            <x-utils.button wire:click="clear" class="h-10 md:ml-4 shadow-md w-full md:w-1/3 mb-6 md:mb-0 justify-center" color="eat-olive">Limpiar</x-utils.button>
           </div>
           
         </div>
@@ -52,12 +52,12 @@
             <tr
               class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
               <td
-                class="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
+                class="w-full lg:w-auto p-3 text-gray-800 border border-b lg:table-cell relative lg:static h-24 flex items-center justify-center md:h-auto">
                 <span
                   class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-montserrat uppercase">
-                  Nombre
+                  Nombre producto
                 </span>
-                <div class="flex items-center">
+                <div class="flex items-center justify-center md:justify-start">
                   <div class=" flex-shrink-0 h-10 ">
                     <img class="h-10 w-10 rounded-full" src=" {{asset('storage/' . $product->photo) }}" alt="">
                   </div>
@@ -67,16 +67,16 @@
                 </div>  
               </td>
               <td
-                class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
+                class="w-full lg:w-auto p-3 text-gray-800 border border-b lg:table-cell relative lg:static h-24 flex items-center justify-center md:h-auto">
                 <span
-                  class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Rol</span>
-                <p class="text-sm font-montserrat">{{$product->supplier->company_name}}</p>  
+                  class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Proveedor</span>
+                <p class="text-sm font-montserrat text-center">{{$product->supplier->company_name}}</p>  
               </td>
               <td
-                class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+                class="w-full lg:w-auto p-3 text-gray-800 border border-b lg:table-cell relative lg:static h-24 flex items-center justify-center md:h-auto">
                 <span
-                  class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Dirección</span>
-                <span class="font-montserrat text-sm">
+                  class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Stock</span>
+                <span class="font-montserrat text-sm text-center">
                   @php
                     $tot_stock = $product->stock * $product->content;
                   @endphp
@@ -85,10 +85,10 @@
                 </span>
               </td>
               <td
-                class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+                class="w-full lg:w-auto p-3 text-gray-800 border border-b lg:table-cell relative lg:static h-24 flex items-center justify-center md:h-auto">
                 <span
-                  class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Teléfono</span>
-                <span class="">
+                  class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Precio</span>
+                <span class="text-center">
                   @php
                     if($product->unit->unit == 'Gramo'){
                       $price = round($product->price / $product->content, 3);
@@ -108,7 +108,7 @@
                 <div class="flex justify-center">
                   <a href="{{ route('admin-products-edit', [$product->slug]) }}" id="editProduct"
                     data-title='Edita los datos del producto' data-placement="left"
-                    class="tooltip_prduct text-eat-green-400 hover:text-eat-green-600 underline">
+                    class="tooltip_prduct mr-3 text-eat-green-400 hover:text-eat-green-600 underline">
                     <x-icons.edit />
                   </a>
                   <a href="#" onclick="confirmAction('deleteProduct', {{ $product }});"

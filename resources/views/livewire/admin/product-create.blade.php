@@ -64,8 +64,8 @@
                   </div> --}}
                 </div>
 
-                <div class="mt-6 flex items-center">
-                  <div class="w-1/3 mr-4">
+                <div class="mt-6 md:flex items-center">
+                  <div class="w-full md:w-1/3 md:mr-4">
                     <x-utils.text-input
                     wire:model="content"
                     type="text"
@@ -75,7 +75,7 @@
                     class=""
                     />
                   </div>
-                  <div class="w-2/3">
+                  <div class="w-full mt-6 md:mt-0 md:w-2/3">
                     <label for="unit" class="block text-sm font-medium leading-5 text-eat-olive-700">Unidad de medida</label>
                     <div x-data="{open: false}">
                       <div class="relative">
@@ -124,8 +124,8 @@
 
                 </div>
 
-                <div class="mt-6 flex items-center">
-                  <div class="w-1/2 mr-4"> 
+                <div class="mt-6 md:flex items-center">
+                  <div class="w-full md:w-1/2 md:mr-4"> 
                     <div class="relative ">
                       <x-utils.text-input
                           wire:model="price"
@@ -146,7 +146,7 @@
                       
                     </div>
                   </div>
-                  <div class=" w-2/5">
+                  <div class="mt-6 md:mt-0 w-full md:w-2/5">
                       <x-utils.text-input
                       wire:model="stock"
                       type="text"
@@ -167,8 +167,8 @@
                     class="mt-6"
                 />
 
-                <div class="mt-6 flex items-center">
-                  <div class="w-1/3 mr-2">
+                <div class="mt-6 md:flex items-center">
+                  <div class="w-full md:w-1/3 md:mr-2">
                     <x-utils.text-input
                     wire:model="brand"
                     type="text"
@@ -178,7 +178,7 @@
                     class=""
                     />
                   </div>                  
-                  <div class="w-2/3">
+                  <div class="w-full mt-6 md:mt-0 md:w-2/3">
                     <label for="" class="block text-sm font-medium leading-5 text-eat-olive-700">Proveedor</label>
                     <div x-data="{open: false}">
                       <div class="relative">
