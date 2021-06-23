@@ -225,13 +225,13 @@
 
             <div class=" col-span-1 ">
               <div class=" text-eat-olive-500 cursor-pointer mt-4 px-4">
-                <label class="flex items-center cursor-pointer mb-4" for="photo">
+                <label class="flex items-center cursor-pointer mt-8 mb-4" for="photo">
                     <x-icons.avatar class="pr-3 " />
                     <p class="mr-4">Subir imágen </p>                  
                 </label>
-                <div class="flex justify-center bg-eat-green-500 p-4">
+                <div class="flex justify-center p-4">
                   @if ($photo)  
-                    <img class=" w-full  h-64 " src="{{ $photo->temporaryUrl() }}">
+                    <img class=" w-auto h-64 " src="{{ $photo->temporaryUrl() }}">
                   @else
                     <x-icons.upload-image width="w-52" height="h-52" />
                   @endif
@@ -241,6 +241,7 @@
                   <p class="mt-2 text-sm text-red-600" id="">{{$message}}</p>
                 @enderror
               </div>              
+              
 
               <div class="mt-6 px-4 flex justify-end">
                 <x-utils.button color="eat-olive" type="submit">Guardar</x-utils.button>                
