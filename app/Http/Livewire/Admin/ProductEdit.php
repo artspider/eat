@@ -81,6 +81,24 @@ class ProductEdit extends Component
         $this->photoHasChanged = true;
     }
 
+    public function SelectCategory(Category $category)
+    {
+        $this->category_id = $category->id;
+        $this->categoryName = $category->name;
+    }
+
+    public function SelectUnit(Unit $unit)
+    {
+        $this->unit_id = $unit->id;
+        $this->unitName = $unit->unit;
+    }
+
+    public function SelectSupplier(Supplier $supplier)
+    {
+        $this->supplier_id = $supplier->id;
+        $this->supplierName = $supplier->company_name;
+    }
+
     public function edit()
     {
         logger($this->unit_id);
