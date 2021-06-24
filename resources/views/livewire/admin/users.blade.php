@@ -30,7 +30,7 @@
 					<tr
 						class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
 						<td
-							class="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
+							class="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static h-28 flex items-center justify-center md:h-auto">
 							<span
 								class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-montserrat uppercase">
 								Nombre
@@ -47,7 +47,7 @@
 
 						</td>
 						<td
-							class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static">
+							class="w-full lg:w-auto p-3 text-gray-800  border border-b text-center block lg:table-cell relative lg:static h-16 flex items-center justify-center md:h-auto">
 							<span
 								class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Rol</span>
 							@forelse ($user->getRoleNames() as $role)
@@ -58,7 +58,7 @@
 
 						</td>
 						<td
-							class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+							class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static h-24 flex items-center justify-center md:h-auto">
 							<span
 								class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Dirección</span>
 							<span class="font-montserrat text-sm">
@@ -72,7 +72,7 @@
 							</span>
 						</td>
 						<td
-							class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+							class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static h-16 flex items-center justify-center md:h-auto">
 							<span
 								class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Teléfono</span>
 							<span class="">
@@ -86,11 +86,11 @@
 							</span>
 						</td>
 						<td
-							class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static">
+							class="w-full lg:w-auto p-3 text-gray-800 border border-b text-center block lg:table-cell relative lg:static h-16 flex items-center justify-center md:h-auto">
 							<span
 								class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Acciones</span>
 							<div class="flex justify-center">
-								<a href="#" id="editUser" onclick="editUser(this,{{$user->id}})"
+								<a class="mr-3" href="#" id="editUser" onclick="editUser(this,{{$user->id}})"
 									data-title='Edita los datos del usuario' data-placement="left"
 									class="tooltip_usr text-eat-green-400 hover:text-eat-green-600 underline">
 									<x-icons.edit />
