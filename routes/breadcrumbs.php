@@ -29,5 +29,22 @@ Breadcrumbs::for('products-create', function ($trail) {
 Breadcrumbs::for('products-edit', function ($trail,$slug) {
     
     $trail->parent('products');
-    $trail->push('Edit Product '.$slug, route('admin-products-edit', $slug));
+    $trail->push('Edit Product: '.$slug, route('admin-products-edit', $slug));
+});
+
+Breadcrumbs::for('suppliers', function ($trail) {
+    $trail->parent('admin');
+    $trail->push('Suppliers', route('admin-suppliers'));    
+});
+
+Breadcrumbs::for('suppliers-create', function ($trail) {
+    
+    $trail->parent('suppliers');
+    $trail->push('Add Supplier', route('admin-suppliers-create'));    
+});
+
+Breadcrumbs::for('suppliers-edit', function ($trail,$company_name) {
+    
+    $trail->parent('suppliers');
+    $trail->push('Edit Supplier: '.$company_name, route('admin-suppliers-edit', $company_name));    
 });

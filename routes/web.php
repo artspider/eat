@@ -19,9 +19,18 @@ Route::get('/admin', function () {
 Route::prefix('admin')->group(function () {
     Route::get('/users', App\Http\Livewire\Admin\Users::class)
     ->middleware('is_admin')
-    ->name('admin-users');
+    ->name('admin-users');    
 
     Route::group(['middleware' => ['role:superadmin|ceo|manager|chef']], function () {
+        Route::get('/suppliers', App\Http\Livewire\Admin\Suppliers::class)
+        ->name('admin-suppliers');
+
+        Route::get('/suppliers/create', App\Http\Livewire\Admin\SupplierCreate::class)
+        ->name('admin-suppliers-create');
+
+        Route::get('/suppliers/edit/{supplier:company_name}', App\Http\Livewire\Admin\SupplierEdit::class)
+        ->name('admin-suppliers-edit');
+
         Route::get('/products', App\Http\Livewire\Admin\Products::class)
         ->name('admin-products');
 
