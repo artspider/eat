@@ -2,7 +2,7 @@
     {{ Breadcrumbs::render('products-create') }}
     
     <div class="bg-white rounded-md shadow-md p-10 ">
-        <x-utils.subtitle class="mb-4">Agregar nuevo producto</x-utils.title>
+        <x-utils.subtitle class="mb-4">Agregar nuevo producto</x-utils.subtitle>
         <hr class=" border-eat-olive-50 mb-6 ">
 
         <form wire:submit.prevent="save">

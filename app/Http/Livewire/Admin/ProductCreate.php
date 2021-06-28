@@ -47,7 +47,7 @@ class ProductCreate extends Component
             'categories' => $this->categories,
             'units' => $this->units
         ])
-        ->layout('components.layouts.master');;
+        ->layout('components.layouts.master');
     }
 
     public function updatedPhoto()
