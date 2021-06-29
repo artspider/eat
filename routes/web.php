@@ -39,6 +39,15 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/products/edit/{product:slug}', App\Http\Livewire\Admin\ProductEdit::class)
         ->name('admin-products-edit');
+
+        Route::get('/menus', App\Http\Livewire\Admin\Menus::class)
+        ->name('admin-menus');
+
+        Route::get('/menus/create', App\Http\Livewire\Admin\MenuCreate::class)
+        ->name('admin-menus-create');
+
+        Route::get('/menus/edit/{menu:slug}', App\Http\Livewire\Admin\MenuEdit::class)
+        ->name('admin-menus-edit');
     });
 
     /* Route::group(['middleware' => ['role:superadmin|ceo|manager|chef']], function () {

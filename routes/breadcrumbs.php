@@ -48,3 +48,8 @@ Breadcrumbs::for('suppliers-edit', function ($trail,$company_name) {
     $trail->parent('suppliers');
     $trail->push('Edit Supplier: '.$company_name, route('admin-suppliers-edit', $company_name));    
 });
+
+Breadcrumbs::for('menus', function ($trail) {
+    $trail->parent('admin');
+    $trail->push('Menus', route('admin-menus'));    
+});
