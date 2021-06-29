@@ -16,14 +16,14 @@
                     placeholder="Ingresa el nombre del nuevo proveedor"
                     class="mb-6"
               />
-              <div class="flex items-center mb-6">
+              <div class="md:flex md:items-center mb-6">
                 <x-utils.text-input
                   wire:model="contact_title"
                   type="text"
                   label="Titulo"                  
                   :required="false"
                   placeholder="Sr."
-                  class="w-1/5 mr-4"
+                  class="w-full md:w-1/5 mr-4"
                 />
                 <x-utils.text-input
                   wire:model="contact_name"
@@ -31,17 +31,17 @@
                   label="Nombre del contacto"                  
                   :required="false"
                   placeholder="Ingresa el nombre del contacto"
-                  class="w-4/5"
+                  class="w-full mt-6 md:mt-0 md:w-4/5"
                 />
               </div>
-              <div class="flex items-center">
+              <div class=" md:flex md:items-center mb-6">
                 <x-utils.text-input
                   wire:model="address"
                   type="text"
                   label="Calle y número"
                   :required="false"
                   placeholder="Calle y número"
-                  class="w-3/5 mr-4"
+                  class="w-full-width md:w-3/5 md:mr-4"
                 />
                 <x-utils.text-input
                   wire:model="suburb"
@@ -49,20 +49,20 @@
                   label="Colonia"
                   :required="true"
                   placeholder="Colonia"
-                  class="w-2/5 "
+                  class="w-full mt-6 md:mt-0 md:w-2/5 "
                 />
               </div>
                 
             </div>
             <div class="col-span-1">
-              <div class="flex items-center mb-6">
+              <div class=" md:flex md:items-center md:mb-6">
                 <x-utils.text-input
                   wire:model="city"
                   type="text"
                   label="Ciudad"
                   :required="true"
                   placeholder="Ciudad"
-                  class="w-3/5 mr-4"
+                  class="w-full md:w-3/5 md:mr-4"
                 />
                 <x-utils.text-input
                   wire:model="state"
@@ -70,17 +70,17 @@
                   label="Estado"
                   :required="true"
                   placeholder="Estado"
-                  class="w-2/5 "
+                  class="w-full my-6 md:my-0 md:w-2/5 "
                 />
               </div>
-              <div class="flex items-center mb-6">
+              <div class="md:flex md:items-center md:mb-6">
                 <x-utils.text-input
                   wire:model="zip"
                   type="text"
                   label="Código Postal"
                   
                   placeholder="C.P. a 5 dígitos"
-                  class=" w-2/5 mr-4 "
+                  class="w-full md:w-2/5 md:mr-4"
                 />
                 <x-utils.text-input
                   wire:model="phone"
@@ -88,7 +88,7 @@
                   label="Teléfono"
                   :required="false"
                   placeholder="Teléfono a 10 dígitos"
-                  class=" w-3/5 "
+                  class="w-full mt-6 md:mt-0 md:w-3/5 "
                 />
               </div>
               <x-utils.text-input
@@ -97,7 +97,7 @@
                   label="Sitio Web"
                   :required="false"
                   placeholder="Sitio web"
-                  class=" "
+                  class=" mt-6 md:mt-0 "
                 />
               <div class="mt-6 flex justify-end">
                 <x-utils.button color="eat-olive" type="submit">Guardar</x-utils.button>                
