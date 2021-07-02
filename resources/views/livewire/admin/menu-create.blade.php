@@ -64,7 +64,7 @@
                         <div class=" z-10 absolute top-10 w-full bg-eat-green-100 mr-10 rounded">
                           <ul>
                           @foreach ($recipe_categories as $recipe_category)
-                          @if ($recipe_category->id == $recipeCategory_id)
+                          @if ($recipe_category->id == $recipe_category_id)
                           <li wire:click="SelectCategory({{$recipe_category->id}})" href="#" class="block cursor-pointer w-full text-sm bg-eat-olive-500 text-eat-white-500 font-light font-montserrat text-left px-4 py-2 hover:bg-eat-olive-100 hover:text-eat-white-100">{{$recipe_category->name}}</li>
                           @else
                           <li x-on:click="open=false" wire:click="SelectCategory({{$recipe_category->id}})" href="#" class="block cursor-pointer w-full text-sm text-eat-olive-500 font-light font-montserrat text-left px-4 py-2 hover:bg-eat-olive-100 hover:text-eat-white-100">{{$recipe_category->name}}</li>                          
