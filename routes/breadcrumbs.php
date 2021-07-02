@@ -51,5 +51,11 @@ Breadcrumbs::for('suppliers-edit', function ($trail,$company_name) {
 
 Breadcrumbs::for('menus', function ($trail) {
     $trail->parent('admin');
-    $trail->push('Menus', route('admin-menus'));    
+    $trail->push('Recetas', route('admin-menus'));    
+});
+
+Breadcrumbs::for('menus-create', function ($trail) {
+    
+    $trail->parent('menus');
+    $trail->push('Add Recipe', route('admin-menus-create'));    
 });
