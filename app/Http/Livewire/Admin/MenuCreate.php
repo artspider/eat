@@ -18,7 +18,7 @@ class MenuCreate extends Component
 
     public $photos = [];
     public $name;
-    public $recipeCategory_id;
+    public $recipe_category_id;
     public $description;
     public $prepTime=0;
     public $cookTime=0;
@@ -73,7 +73,7 @@ class MenuCreate extends Component
 
     public function SelectCategory(RecipeCategory $category)
     {
-        $this->recipeCategory_id = $category->id;
+        $this->recipe_category_id = $category->id;
         $this->recipeCategoryName = $category->name;
     }
 
@@ -186,7 +186,7 @@ class MenuCreate extends Component
         
         $recipe = new Recipe();
         $recipe->name = $this->name;
-        $recipe->recipe_category_id = $this->recipeCategory_id;
+        $recipe->recipe_category_id = $this->recipe_category_id;
         $recipe->description = $this->description;
         $recipe->prepTime = $this->prepTime;
         $recipe->cookTime = $this->cookTime;
