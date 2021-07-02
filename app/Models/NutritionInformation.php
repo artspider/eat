@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class NutritionInformation extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'recipe_id',
+        'calories',
+        'carbohydrateContent',
+        'cholesterolContent',
+        'fatContent',
+        'fiberContent',
+        'proteinContent',
+        'saturatedFatContent',
+        'servingSize',
+        'sodiumContent',
+        'sugarContent',
+        'transFatContent',
+        'unsaturatedFatContent'
+    ];
 }

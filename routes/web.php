@@ -9,7 +9,7 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('eat-welcome');
 })
-->middleware('is_admin')
+->middleware('is_admin','auth:sanctum')
 ->name('admin');
 
 /* Route::get('/admin', App\Http\Livewire\Admin\Dashboard::class)
@@ -17,11 +17,12 @@ Route::get('/admin', function () {
 ->name('admin-dashboard'); */
 
 Route::prefix('admin')->group(function () {
+    
     Route::get('/users', App\Http\Livewire\Admin\Users::class)
-    ->middleware('is_admin')
+    ->middleware('is_admin','auth:sanctum')
     ->name('admin-users');    
 
-    Route::group(['middleware' => ['role:superadmin|ceo|manager|chef']], function () {
+    Route::group(['middleware' => ['role:superadmin|ceo|manager|chef','auth:sanctum']], function () {
         Route::get('/suppliers', App\Http\Livewire\Admin\Suppliers::class)
         ->name('admin-suppliers');
 
@@ -50,10 +51,7 @@ Route::prefix('admin')->group(function () {
         ->name('admin-menus-edit');
     });
 
-    /* Route::group(['middleware' => ['role:superadmin|ceo|manager|chef']], function () {
-        Route::get('/products/create', App\Http\Livewire\Admin\ProductCreate::class)
-        ->name('admin-products-create');
-    }); */
+    
 });
 
 

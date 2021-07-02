@@ -16,7 +16,7 @@ class Menus extends Component
 
     protected $listeners = [
         'success' => 'newMenu',
-        'deleteMenu' => 'remove'
+        'deleteRecipe' => 'remove'
     ];
 
     public function render()
@@ -26,5 +26,11 @@ class Menus extends Component
                                     ->paginate(5)
         ])
         ->layout('components.layouts.master');
+    }
+
+    public function remove(Recipe $recipe)
+    {
+        $recipe->delete();
+        $this->emit('success', 'Se elimino la receta');
     }
 }
