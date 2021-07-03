@@ -1,8 +1,10 @@
 
-<div {{$attributes->merge(['class' => 'pl-7 pb-4 text-eat-olive-700 hover:text-eat-pink-500'])}}>
-  <a class="text-eat-olive-700 hover:text-eat-fuccia-700 flex items-center focus:outline-none duration-150 ease-in-out"
+<div {{$attributes->merge(['class' => 'pb-4 text-white hover:text-eat-fuccia-500'])}}>
+  <a class="block px-4 py-2 hover:bg-white rounded-md"
     href="{{ route($routeInMenu) }}">
-    <span class="mr-3"> {{$image}} </span>
-    {{ $slot }}
+    <div class="flex items-center">
+      <span class="mr-3"> {{$image}} </span>
+      {{ $slot }}
+    </div>
   </a>
 </div>

@@ -1,4 +1,4 @@
-<a class="flex items-center text-eat-olive-700 hover:text-eat-fuccia-700 focus:outline-none duration-150 ease-in-out"
+<a class="flex items-center text-white hover:text-eat-fuccia-700 focus:outline-none duration-150 ease-in-out"
     href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
     <svg class=" fill-current arrow-left w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path
