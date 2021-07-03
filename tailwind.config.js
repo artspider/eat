@@ -92,6 +92,8 @@ module.exports = {
             opacity: ["disabled"],
             backgroundColor: ["checked"],
             borderColor: ["checked"],
+            backgroundColor: ['odd'],
+            textColor: ['odd']
         },
     },
 

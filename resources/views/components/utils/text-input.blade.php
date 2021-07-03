@@ -4,6 +4,7 @@
     'required'    => false,
     'placeholder' => "",
     'pl'          => "pl-4",
+    'disabled'    => false,
 ])
 
 <div class="{{$attributes->get('class')}}">
@@ -16,7 +17,9 @@
                @if ($required)
                required    
                @endif
-               
+               @if ($disabled)
+               disabled    
+               @endif
                @error($attributes->whereStartsWith('wire:model')->first())
                class="form-input block w-full {{$pl}}  pr-10 border-eat-fuccia-300 text-eat-fuccia-900 placeholder-eat-fuccia-300 focus:border-eat-fuccia-100 focus:shadow-outline-red sm:text-sm sm:leading-5"                    
                @else

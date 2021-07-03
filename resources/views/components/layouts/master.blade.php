@@ -84,13 +84,6 @@
                 </button>
             </div>
             <ul class="mt-8">
-                <!-- <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-indigo-800 rounded-md">Home</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-indigo-800 rounded-md">About</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-indigo-800 rounded-md">Products</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-indigo-800 rounded-md">Pricing</a>
-                </li> -->
-
                 @foreach ($navlinks as $link)
 					<x-utils.menu-item :routeInMenu="$link['route']" class="text-white!important hover:text-white">
 						<x-slot name="image">
