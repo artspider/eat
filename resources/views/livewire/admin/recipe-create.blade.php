@@ -1,5 +1,5 @@
 <div>
-    {{ Breadcrumbs::render('menus-create') }}
+    {{ Breadcrumbs::render('recipes-create') }}
 
     @if ($errors->any())
         <script>

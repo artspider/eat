@@ -12,7 +12,7 @@ use App\Models\RecipeImage;
 use App\Models\NutritionInformation;
 use Livewire\WithFileUploads;
 
-class MenuCreate extends Component
+class RecipeCreate extends Component
 {
     use WithFileUploads;
 
@@ -65,7 +65,7 @@ class MenuCreate extends Component
 
     public function render()
     {
-        return view('livewire.admin.menu-create',[
+        return view('livewire.admin.recipe-create',[
             'recipe_categories' => $this->recipeCategory,
             'units' => $this->units,
             'products' => $this->products,
