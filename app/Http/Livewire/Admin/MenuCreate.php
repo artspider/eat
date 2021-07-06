@@ -54,6 +54,8 @@ class MenuCreate extends Component
     public $nutritionList=[];
     public $nutritionQty=1;
 
+    public $queryProduct;
+
     public function mount()
     {
         $this->recipeCategory = RecipeCategory::all();
@@ -69,6 +71,11 @@ class MenuCreate extends Component
             'products' => $this->products,
         ])
         ->layout('components.layouts.master');
+    }
+
+    public function updatedqueryProduct()
+    {
+        $this->products = Product::where('name', 'like', '%' . $this->queryProduct . '%')->get();
     }
 
     public function SelectCategory(RecipeCategory $category)
@@ -108,6 +115,7 @@ class MenuCreate extends Component
     {
         $this->product_id = $product->id;
         $this->productName = $product->name;
+        $this->queryProduct = $product->name;
     }
 
     public function addIngredient()

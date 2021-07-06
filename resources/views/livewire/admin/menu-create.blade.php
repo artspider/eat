@@ -243,13 +243,15 @@
                   <div class="w-full md:w-2/5 mr-1 ">
                     <div x-data="{open: false}">
                       <div class="relative">
-                        <div x-on:click="open=true" class="w-full h-10 bg bg-eat-white-500 rounded-md shadow-lg flex items-center justify-between">
-                          <x-utils.text class="ml-4">{{$productName}}</x-utils.text>
-                          <x-icons.chevron class="mr-4 text-eat-olive-500 " />
+                        <div x-on:click="open=true" class="w-full h-10 bg-eat-white-500 rounded-md shadow-lg flex items-center justify-between">
+
+                          {{-- <x-utils.text class="ml-4">{{$productName}}</x-utils.text> --}}
+                          <input class="w-full h-10 bg-eat-white-500 border border-transparent focus:outline-none focus:border-transparent focus:ring-2 focus:ring-eat-olive-600  sm:text-sm sm:leading-5" type="text" name="" id="" placeholder="Producto..." wire:model="queryProduct">
+                          <x-icons.chevron class="absolute top-2 right-4 text-eat-olive-500 " />
                         </div>
 
                         <div x-show="open" x-on:click.away="open=false">
-                          <div class=" z-10 absolute top-10 w-full bg-eat-green-100 mr-10 rounded">
+                          <div class="overflow-y-auto max-h-48 z-10 absolute top-11 w-full bg-eat-green-100 mr-10 rounded">
                             <ul>
                               @foreach ($products as $product)
                                 @if ($product->id == $product_id)
