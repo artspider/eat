@@ -315,7 +315,7 @@
             <div class="px-3 py-7 md:p-7">
               <div class="flex justify-between items-center">
                 <div class="w-24 h-24 flex-shrink-1 rounded-lg relative">
-                  <img class="rounded-lg absolute" src="https://scontent.fcvj2-1.fna.fbcdn.net/v/t1.6435-9/205080132_225380556095059_7208562613423064108_n.jpg?_nc_cat=108&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeGBuln_N2i5TLPws4tOEtbSslgIfhEibY2yWAh-ESJtjcYuU3C0Vq3IHoG8vMHmRsLft8PjzyW6GcB193tUm6O9&_nc_ohc=j-gjNRhtzgsAX8GVAKc&_nc_ht=scontent.fcvj2-1.fna&oh=e5501b1acc279fad6d0dd08225070c4b&oe=60E96FFE" alt="">
+                  <img class="rounded-lg absolute transform transition translate hover:translate-y-2" src="https://scontent.fcvj2-1.fna.fbcdn.net/v/t1.6435-9/205080132_225380556095059_7208562613423064108_n.jpg?_nc_cat=108&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeGBuln_N2i5TLPws4tOEtbSslgIfhEibY2yWAh-ESJtjcYuU3C0Vq3IHoG8vMHmRsLft8PjzyW6GcB193tUm6O9&_nc_ohc=j-gjNRhtzgsAX8GVAKc&_nc_ht=scontent.fcvj2-1.fna&oh=e5501b1acc279fad6d0dd08225070c4b&oe=60E96FFE" alt="">
                   <div class="bg-eat-olive-500 top-16 right-4 rounded-full border-4 w-16 h-16 absolute">
                       <p class="text-center absolute top-3 left-3 font-bold text-2xl text-white">#<span>1</span> </p>
                   </div>
@@ -534,13 +534,116 @@
     </div>
 
   <!-- Promocion semanal -->
-    <div class="h-screen w-full flex 2xl:flex 2xl:justify-between mb-10">
+    <div class="h-auto w-full 2xl:flex 2xl:justify-between mb-10">
       
-      <div class="2xl:flex-1 rounded-md shadow-md mr-4">
+      <div class="2xl:flex-1 rounded-md shadow-md lg:mr-4">
         <x-utils.subsubtitle class="p-5 text-center">Promocion semanal</x-utils.subsubtitle>
+          
+          <div class="md:flex md:justify-between">
+            <div class="transition-all bg-eat-green-500  hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
+              <div class="xl:mx-2">
+                <p class="text-lg text-center font-bold text-gray-500 pt-2">LUNES</p>
+                <div class="w-auto h-auto pb-4 mt-2">
+                  <img  class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://scontent.fcvj2-1.fna.fbcdn.net/v/t1.6435-9/200504803_221615099804938_8395968491295608874_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeEfLHa82Zq2w_mrgVrvPWvPxSkRRBEAUizFKRFEEQBSLDzEsZoVTijY35JmIEjJB2StXBc9VXGwAwIUd37KIkPW&_nc_ohc=0py0Yb5dD1gAX_6hX5V&_nc_ht=scontent.fcvj2-1.fna&oh=903ee6ab69952a705b2b082cf697b221&oe=60EB8969" alt="">
+                </div>
+                <p class="text-xl text-center font-bold pb-2">Meat balls</p>
+              </div><!-- Lun -->
+            </div><!-- ter -->
+
+            <div class="transition-all bg-eat-green-500  hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
+              <div class="xl:mx-2">
+                <p class="text-lg text-center font-bold text-gray-500 pt-2">MARTES</p>
+                <div class="w-auto h-auto pb-4 mt-2">
+                  <img  class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://scontent.fcvj2-1.fna.fbcdn.net/v/t1.6435-9/205080132_225380556095059_7208562613423064108_n.jpg?_nc_cat=108&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeGBuln_N2i5TLPws4tOEtbSslgIfhEibY2yWAh-ESJtjcYuU3C0Vq3IHoG8vMHmRsLft8PjzyW6GcB193tUm6O9&_nc_ohc=rNWvamaMpFAAX8Px40_&_nc_ht=scontent.fcvj2-1.fna&oh=8ed68137056794e23da3cf1c7da70a3c&oe=60EB6A3E" alt="">
+                </div>
+                <p class="text-xl text-center font-bold pb-2">De la nutri</p>
+              </div><!-- Lun -->
+            </div><!-- ter -->
+
+            <div class="transition-all bg-eat-green-500 hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
+              <div class="xl:mx-2">
+                <p class="text-lg text-center font-bold text-gray-500 pt-2">MIERCOLES</p>
+                <div class="w-auto h-auto pb-4 mt-2">
+                  <img  class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://scontent.fcvj2-1.fna.fbcdn.net/v/t1.6435-9/200504803_221615099804938_8395968491295608874_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeEfLHa82Zq2w_mrgVrvPWvPxSkRRBEAUizFKRFEEQBSLDzEsZoVTijY35JmIEjJB2StXBc9VXGwAwIUd37KIkPW&_nc_ohc=0py0Yb5dD1gAX_6hX5V&_nc_ht=scontent.fcvj2-1.fna&oh=903ee6ab69952a705b2b082cf697b221&oe=60EB8969" alt="">
+                </div>
+                <p class="text-xl text-center font-bold pb-2">Meat balls</p>
+              </div><!-- Mier -->
+            </div><!-- ter -->
+
+            <div class="transition-all bg-eat-green-500 hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
+              <div class="xl:mx-2">
+                <p class="text-lg text-center font-bold text-gray-500 pt-2">JUEVES</p>
+                <div class="w-auto h-auto pb-4 mt-2">
+                  <img  class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://scontent.fcvj2-1.fna.fbcdn.net/v/t1.6435-9/200504803_221615099804938_8395968491295608874_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeEfLHa82Zq2w_mrgVrvPWvPxSkRRBEAUizFKRFEEQBSLDzEsZoVTijY35JmIEjJB2StXBc9VXGwAwIUd37KIkPW&_nc_ohc=0py0Yb5dD1gAX_6hX5V&_nc_ht=scontent.fcvj2-1.fna&oh=903ee6ab69952a705b2b082cf697b221&oe=60EB8969" alt="">
+                </div>
+                <p class="text-xl text-center font-bold pb-2">Meat balls</p>
+              </div><!-- Juev -->
+            </div><!-- ter -->
+
+            <div class="transition-all bg-eat-green-500 hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
+              <div class="xl:mx-2">
+                <p class="text-lg text-center font-bold text-gray-500 pt-2">VIERNES</p>
+                <div class="w-auto h-auto pb-4 mt-2">
+                  <img  class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://scontent.fcvj2-1.fna.fbcdn.net/v/t1.6435-9/200504803_221615099804938_8395968491295608874_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeEfLHa82Zq2w_mrgVrvPWvPxSkRRBEAUizFKRFEEQBSLDzEsZoVTijY35JmIEjJB2StXBc9VXGwAwIUd37KIkPW&_nc_ohc=0py0Yb5dD1gAX_6hX5V&_nc_ht=scontent.fcvj2-1.fna&oh=903ee6ab69952a705b2b082cf697b221&oe=60EB8969" alt="">
+                </div>
+                <p class="text-xl text-center font-bold pb-2">Meat balls</p>
+              </div><!-- Lun -->
+            </div><!-- ter -->          
+          </div>
+
+          <div class="mx-4 pb-4 md:flex md:justify-between mt-4">
+            <x-utils.subsubtitle class="ml-1 text-center my-2">Precio: <b class="text-gray-400">$</b><span class="text-gray-400">450.00</span> </x-utils.subsubtitle>
+            <x-utils.button class="w-full md:w-48 justify-center " color="eat-fuccia">Editar promocion semanal</x-componets.button>
+          </div>
+
+          
       </div>
 
       <div class="shadow-lg 2xl:w-1/3">
+                <x-utils.subsubtitle class="p-5 text-center">Check-in empleados</x-utils.subsubtitle>
+                <p class="font-bold text-right pr-8 mb-4">08/07/2021</p>
+        <div>
+            <div class="flex justify-around mb-4 cursor-pointer">
+              <div>
+                <img class="rounded-full w-24 h-24 transition-all transform translate hover:translate-x-2" src="https://randomuser.me/api/portraits/men/31.jpg" alt="">
+              </div>
+
+              <div class="flex justify-center flex-col w-1/2 ">
+                    <div class="flex justify-between items-center mb-3">
+                      <p class="font-bold">Jaime</p>
+                      <div class="bg-eat-green-500 w-8 h-8 rounded-full">
+                      </div>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                      <p class="font-bold">Hora de llegada</p>
+                      <div class="">
+                        <p class="font-bold text-gray-400">08:00<span>AM</span></p>
+                      </div>
+                    </div>
+              </div>
+            </div><!-- Termina user -->
+
+            <div class="flex justify-around mb-4 cursor-pointer">
+              <div>
+                <img class="rounded-full w-24 h-24 transition-all transform translate hover:translate-x-2" src="https://randomuser.me/api/portraits/men/82.jpg" alt="">
+              </div>
+
+              <div class="flex justify-center flex-col w-1/2">
+                    <div class="flex justify-between items-center mb-3">
+                      <p class="font-bold">Pedro</p>
+                      <div class="bg-eat-fuccia-500 w-8 h-8 rounded-full">
+                      </div>
+                    </div>
+                    <div class="flex justify-between items-center mb-3">
+                      <p class="font-bold">Hora de llegada</p>
+                      <div class="">
+                        <p class="font-bold text-gray-400">08:59<span>AM</span></p>
+                      </div>
+                    </div>
+              </div>
+            </div><!-- Termina user -->
+        </div>
+          
       </div>
       
     </div>
