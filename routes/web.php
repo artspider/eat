@@ -49,6 +49,7 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/menus/edit/{menu:slug}', App\Http\Livewire\Admin\MenuEdit::class)
         ->name('admin-menus-edit');
+
     });
 
     
@@ -56,6 +57,6 @@ Route::prefix('admin')->group(function () {
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('eat-welcome');
+    return view('eat-welcome2');
 })->name('dashboard');
 

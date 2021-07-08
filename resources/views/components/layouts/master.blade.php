@@ -28,6 +28,7 @@
         <script src="{{ mix('js/notifications.js') }}"></script>
         <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
         <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     </head>
 
     <body class="antialiased min-h-screen lg:flex" x-data="{open: false}">
@@ -133,6 +134,7 @@
 
 
         {{-- <script src="{{ mix('js/alpine-functions.js') }}"></script> --}}
+        
         @livewireScripts
         @stack('modals')
     </body>
