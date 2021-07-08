@@ -49,13 +49,13 @@ Breadcrumbs::for('suppliers-edit', function ($trail,$company_name) {
     $trail->push('Edit Supplier: '.$company_name, route('admin-suppliers-edit', $company_name));    
 });
 
-Breadcrumbs::for('menus', function ($trail) {
+Breadcrumbs::for('recipes', function ($trail) {
     $trail->parent('admin');
-    $trail->push('Recetas', route('admin-menus'));    
+    $trail->push('Recipes', route('admin-recipes'));    
 });
 
-Breadcrumbs::for('menus-create', function ($trail) {
+Breadcrumbs::for('recipes-create', function ($trail) {
     
-    $trail->parent('menus');
-    $trail->push('Add Recipe', route('admin-menus-create'));    
+    $trail->parent('recipes');
+    $trail->push('Add Recipe', route('admin-recipes-create'));
 });

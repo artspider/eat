@@ -1,5 +1,5 @@
 <div>
-    {{ Breadcrumbs::render('menus') }}
+    {{ Breadcrumbs::render('recipes') }}
 
     <div class="bg-white rounded-md shadow-md p-10 ">
         <x-utils.subtitle class="mb-4">Lista de recetas</x-utils.subtitle>
@@ -76,7 +76,7 @@
                 <span
                   class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Acciones</span>
                 <div class="flex justify-center">
-                  <a href="{{ route('admin-menus-edit', [$recipe->name]) }}" id="editRecipe"
+                  <a href="{{ route('admin-recipes-edit', [$recipe->name]) }}" id="editRecipe"
                     data-title='Edita los datos de la receta' data-placement="left"
                     class="tooltip_recipe mr-3 text-eat-green-400 hover:text-eat-green-600 underline">
                     <x-icons.edit />
@@ -100,7 +100,7 @@
         @endif
 
         <div class="flex justify-end mt-4">
-          <x-utils.button id="createRecipe" color="eat-olive" onclick="location.href='/admin/menus/create'">
+          <x-utils.button id="createRecipe" color="eat-olive" onclick="location.href='/admin/recipes/create'">
             Agregar
           </x-utils.button>            
         </div>
@@ -109,7 +109,7 @@
 @push('modals')
 <script>
   Livewire.on('redirect', message => {
-    fireMessageAndRedirect(message,'/admin/menus');
+    fireMessageAndRedirect(message,'/admin/recipes');
   });
 </script>
 <script>  

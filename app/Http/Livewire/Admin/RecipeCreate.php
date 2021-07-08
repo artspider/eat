@@ -12,7 +12,7 @@ use App\Models\RecipeImage;
 use App\Models\NutritionInformation;
 use Livewire\WithFileUploads;
 
-class MenuCreate extends Component
+class RecipeCreate extends Component
 {
     use WithFileUploads;
 
@@ -54,6 +54,8 @@ class MenuCreate extends Component
     public $nutritionList=[];
     public $nutritionQty=1;
 
+    public $queryProduct;
+
     public function mount()
     {
         $this->recipeCategory = RecipeCategory::all();
@@ -63,12 +65,17 @@ class MenuCreate extends Component
 
     public function render()
     {
-        return view('livewire.admin.menu-create',[
+        return view('livewire.admin.recipe-create',[
             'recipe_categories' => $this->recipeCategory,
             'units' => $this->units,
             'products' => $this->products,
         ])
         ->layout('components.layouts.master');
+    }
+
+    public function updatedqueryProduct()
+    {
+        $this->products = Product::where('name', 'like', '%' . $this->queryProduct . '%')->get();
     }
 
     public function SelectCategory(RecipeCategory $category)
@@ -108,6 +115,7 @@ class MenuCreate extends Component
     {
         $this->product_id = $product->id;
         $this->productName = $product->name;
+        $this->queryProduct = $product->name;
     }
 
     public function addIngredient()

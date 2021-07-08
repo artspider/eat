@@ -41,15 +41,17 @@ Route::prefix('admin')->group(function () {
         Route::get('/products/edit/{product:slug}', App\Http\Livewire\Admin\ProductEdit::class)
         ->name('admin-products-edit');
 
-        Route::get('/menus', App\Http\Livewire\Admin\Menus::class)
-        ->name('admin-menus');
+        Route::get('/recipes', App\Http\Livewire\Admin\Recipes::class)
+        ->name('admin-recipes');
 
-        Route::get('/menus/create', App\Http\Livewire\Admin\MenuCreate::class)
-        ->name('admin-menus-create');
+        Route::get('/recipes/create', App\Http\Livewire\Admin\RecipeCreate::class)
+        ->name('admin-recipes-create');
 
-        Route::get('/menus/edit/{menu:slug}', App\Http\Livewire\Admin\MenuEdit::class)
-        ->name('admin-menus-edit');
+        Route::get('/recipes/edit/{recipe:slug}', App\Http\Livewire\Admin\RecipeEdit::class)
+        ->name('admin-recipes-edit');
 
+        Route::get('/dishes', App\Http\Livewire\Admin\Dishes::class)
+        ->name('admin-dishes');
     });
 
     
