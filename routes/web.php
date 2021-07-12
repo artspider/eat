@@ -12,6 +12,7 @@ Route::get('/admin', function () {
 ->middleware('is_admin','auth:sanctum')
 ->name('admin');
 
+
 /* Route::get('/admin', App\Http\Livewire\Admin\Dashboard::class)
 ->middleware('is_admin')
 ->name('admin-dashboard'); */
