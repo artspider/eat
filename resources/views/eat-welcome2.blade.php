@@ -536,15 +536,17 @@
   <!-- Promocion semanal -->
     <div class="h-auto w-full 2xl:flex 2xl:justify-between mb-10">
       
-      <div class="2xl:flex-1 rounded-md shadow-md lg:mr-4">
-        <x-utils.subsubtitle class="p-5 text-center">Promocion semanal</x-utils.subsubtitle>
-          
+
+
+    <div class="2xl:flex 2xl:flex-col">
+      <div class="h-full 2xl:flex-1 rounded-md shadow-md lg:mr-4">
+        <h2 class="text-eat-olive-700 text-xl font-bold uppercase tracking-wider p-5 text-center">Promocion semanal</h2>          
           <div class="md:flex md:justify-between">
             <div class="transition-all bg-eat-green-500  hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
               <div class="xl:mx-2">
                 <p class="text-lg text-center font-bold text-gray-500 pt-2">LUNES</p>
                 <div class="w-auto h-auto pb-4 mt-2">
-                  <img  class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1550317138-10000687a72b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1093&q=80" alt="">
+                  <img class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1550317138-10000687a72b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1093&amp;q=80" alt="">
                 </div>
                 <p class="text-xl text-center font-bold pb-2">Meat balls</p>
               </div><!-- Lun -->
@@ -554,7 +556,7 @@
               <div class="xl:mx-2">
                 <p class="text-lg text-center font-bold text-gray-500 pt-2">MARTES</p>
                 <div class="w-auto h-auto pb-4 mt-2">
-                  <img  class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1617219474299-b17c6a43834d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1079&q=80" alt="">
+                  <img class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1617219474299-b17c6a43834d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1079&amp;q=80" alt="">
                 </div>
                 <p class="text-xl text-center font-bold pb-2">De la nutri</p>
               </div><!-- Lun -->
@@ -564,7 +566,7 @@
               <div class="xl:mx-2">
                 <p class="text-lg text-center font-bold text-gray-500 pt-2">MIERCOLES</p>
                 <div class="w-auto h-auto pb-4 mt-2">
-                  <img  class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1551978129-b73f45d132eb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1004&q=80" alt="">
+                  <img class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1551978129-b73f45d132eb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1004&amp;q=80" alt="">
                 </div>
                 <p class="text-xl text-center font-bold pb-2">Meat balls</p>
               </div><!-- Mier -->
@@ -574,7 +576,7 @@
               <div class="xl:mx-2">
                 <p class="text-lg text-center font-bold text-gray-500 pt-2">JUEVES</p>
                 <div class="w-auto h-auto pb-4 mt-2">
-                  <img  class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=968&q=80" alt="">
+                  <img class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=968&amp;q=80" alt="">
                 </div>
                 <p class="text-xl text-center font-bold pb-2">Meat balls</p>
               </div><!-- Juev -->
@@ -584,7 +586,7 @@
               <div class="xl:mx-2">
                 <p class="text-lg text-center font-bold text-gray-500 pt-2">VIERNES</p>
                 <div class="w-auto h-auto pb-4 mt-2">
-                  <img  class="w-44 object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="">
+                  <img class="w-44 object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1050&amp;q=80" alt="">
                 </div>
                 <p class="text-xl text-center font-bold pb-2">Meat balls</p>
               </div><!-- Lun -->
@@ -592,12 +594,44 @@
           </div>
 
           <div class="mx-4 pb-4 md:flex md:justify-between mt-4">
-            <x-utils.subsubtitle class="ml-1 text-center my-2">Precio: <b class="text-gray-400">$</b><span class="text-gray-400">450.00</span> </x-utils.subsubtitle>
-            <x-utils.button class="w-full md:w-48 justify-center " color="eat-fuccia">Editar promocion semanal</x-componets.button>
+            <h2 class="text-eat-olive-700 text-xl font-bold uppercase tracking-wider ml-1 text-center my-2">Precio: <b class="text-gray-400">$</b><span class="text-gray-400">450.00</span></h2>
+            <button enabled="" class="inline-flex items-center px-4 py-2 bg-eat-fuccia-500 border border-transparent rounded-md font-semibold text-xs text-eat-white-500 uppercase tracking-wider hover:bg-eat-fuccia-400 active:bg-eat-fuccia-700 focus:outline-none focus:border-eat-fuccia-700 focus:ring ring-eat-fuccia-300 disabled:opacity-25 transition ease-in-out duration-150 w-full md:w-48 justify-center">Editar promocion semanal</button>}
+          </div>
+      </div><!-- Comida semanal -->
+
+      <div class="h-full 2xl:flex-1 rounded-md shadow-md lg:mr-4 2xl:mt-8">
+        <h2 class="text-eat-olive-700 text-xl font-bold uppercase tracking-wider p-5 text-center">Promocion Diaria (Combo)</h2>          
+          <div class="md:flex md:justify-center">
+            <div class="transition-all bg-eat-green-500  hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
+              <div class="xl:mx-2">
+                <p class="text-lg text-center font-bold text-gray-500 pt-2">#1</p>
+                <div class="w-auto h-36  pb-4 mt-2">
+                  <img class="w-full h-full object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1458642849426-cfb724f15ef7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1050&amp;q=80" alt="">
+                </div>
+                <p class="text-xl text-center font-bold pb-2">Pizza fit</p>
+              </div><!-- Lun -->
+            </div><!-- ter -->
+
+            <div class="transition-all bg-eat-green-500  hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
+              <div class="xl:mx-2">
+                <p class="text-lg text-center font-bold text-gray-500 pt-2">#2</p>
+                <div class="w-auto h-36 pb-4 mt-2">
+                  <img class="w-full h-full object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1583577612013-4fecf7bf8f13?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=874&amp;q=80" alt="">
+                </div>
+                <p class="text-xl text-center font-bold pb-2">Agua del dìa</p>
+              </div><!-- Lun -->
+            </div><!-- ter -->
+       
           </div>
 
-          
-      </div>
+          <div class="mx-4 pb-4 md:flex md:justify-between mt-4">
+            <h2 class="text-eat-olive-700 text-xl font-bold uppercase tracking-wider ml-1 text-center my-2">Precio: <b class="text-gray-400">$</b><span class="text-gray-400">120.00</span></h2>
+            <button enabled="" class="inline-flex items-center px-4 py-2 bg-eat-fuccia-500 border border-transparent rounded-md font-semibold text-xs text-eat-white-500 uppercase tracking-wider hover:bg-eat-fuccia-400 active:bg-eat-fuccia-700 focus:outline-none focus:border-eat-fuccia-700 focus:ring ring-eat-fuccia-300 disabled:opacity-25 transition ease-in-out duration-150 w-full md:w-48 justify-center">Editar promocion diaria</button>
+          </div>
+      </div><!-- Comida diaria -->
+
+    </div>
+
 
       <div class="shadow-lg 2xl:w-1/3">
                 <x-utils.subsubtitle class="p-5 text-center">Check-in empleados</x-utils.subsubtitle>
@@ -644,7 +678,7 @@
             </div><!-- Termina user -->
         </div>
           
-      </div>
+      </div><!-- Chehck IN -->
       
     </div>
 
@@ -855,3 +889,8 @@
 
         </script>
 </x-layouts.master>
+
+
+
+
+
