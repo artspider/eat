@@ -4,7 +4,109 @@
   <x-utils.container>
   
 
+        <div class="rounded-md shadow-md">
+          <x-utils.subsubtitle class="p-5 text-center">CLIENTES PERZONALIZADOS</x-utils.subsubtitle>
 
+          
+          <div class="sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div>
+              <div class="transition-all hover:bg-eat-green-500 pb-4 rounded-lg mx-2 ">
+                <div class="px-3 py-4 md:p-7">
+                  <div class="flex justify-between items-center sm:flex-col ">
+                    <div>
+                      <img class="rounded-full w-24 h-24 transition-all transform translate hover:translate-x-2" src="https://randomuser.me/api/portraits/women/31.jpg" alt="">
+                    </div><!-- Image -->
+                    <div class="text-center mx-5 sm:mt-4">
+                      <p class="font-bold mb-1">Stephanie Bernabe</p>
+                      <div class="flex justify-between items-center w-full">
+                      <x-utils.button class="mx-auto bg-eat-fuccia-500 hover:bg-eat-fuccia-700 transform hover:scale-110">Ver comidas</x-utils.button>
+                      </div>
+                    </div><!-- TEXT -->
+                  </div>
+                </div>
+              </div>
+            </div><!--Termina personalizado -->
+
+            <div>
+              <div class="transition-all hover:bg-eat-green-500 pb-4 rounded-lg mx-2 ">
+                <div class="px-3 py-4 md:p-7">
+                  <div class="flex justify-between items-center sm:flex-col ">
+                    <div>
+                      <img class="rounded-full w-24 h-24 transition-all transform translate hover:translate-x-2" src="https://randomuser.me/api/portraits/men/31.jpg" alt="">
+                    </div><!-- Image -->
+                    <div class="text-center mx-5 sm:mt-4">
+                      <p class="font-bold mb-1">Roberto Martines</p>
+                      <div class="flex justify-between items-center w-full">
+                      <x-utils.button class="mx-auto bg-eat-fuccia-500 hover:bg-eat-fuccia-700 transform hover:scale-110">Ver comidas</x-utils.button>
+                      </div>
+                    </div><!-- TEXT -->
+                  </div>
+                </div>
+              </div>
+            </div><!--Termina personalizado -->
+
+            <div>
+              <div class="transition-all hover:bg-eat-green-500 pb-4 rounded-lg mx-2 ">
+                <div class="px-3 py-4 md:p-7">
+                  <div class="flex justify-between items-center sm:flex-col ">
+                    <div>
+                      <img class="rounded-full w-24 h-24 transition-all transform translate hover:translate-x-2" src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+                    </div><!-- Image -->
+                    <div class="text-center mx-5 sm:mt-4">
+                      <p class="font-bold mb-1">Julio Bernabe</p>
+                      <div class="flex justify-between items-center w-full">
+                      <x-utils.button class="mx-auto bg-eat-fuccia-500 hover:bg-eat-fuccia-700 transform hover:scale-110">Ver comidas</x-utils.button>
+                      </div>
+                    </div><!-- TEXT -->
+                  </div>
+                </div>
+              </div>
+            </div><!--Termina personalizado -->
+
+            <div>
+              <div class="transition-all hover:bg-eat-green-500 pb-4 rounded-lg mx-2 ">
+                <div class="px-3 py-4 md:p-7">
+                  <div class="flex justify-between items-center sm:flex-col ">
+                    <div>
+                      <img class="rounded-full w-24 h-24 transition-all transform translate hover:translate-x-2" src="https://randomuser.me/api/portraits/women/25.jpg" alt="">
+                    </div><!-- Image -->
+                    <div class="text-center mx-5 sm:mt-4">
+                      <p class="font-bold mb-1">Shairi Pineda</p>
+                      <div class="flex justify-between items-center w-full">
+                      <x-utils.button class="mx-auto bg-eat-fuccia-500 hover:bg-eat-fuccia-700 transform hover:scale-110">Ver comidas</x-utils.button>
+                      </div>
+                    </div><!-- TEXT -->
+                  </div>
+                </div>
+              </div>
+            </div><!--Termina personalizado -->
+
+            <div>
+              <div class="transition-all hover:bg-eat-green-500 pb-4 rounded-lg mx-2 ">
+                <div class="px-3 py-4 md:p-7">
+                  <div class="flex justify-between items-center sm:flex-col ">
+                    <div>
+                      <img class="rounded-full w-24 h-24 transition-all transform translate hover:translate-x-2" src="https://randomuser.me/api/portraits/men/13.jpg" alt="">
+                    </div><!-- Image -->
+                    <div class="text-center mx-5 sm:mt-4">
+                      <p class="font-bold mb-1">Carlos Carbajal</p>
+                      <div class="flex justify-between items-center w-full">
+                      <x-utils.button class="mx-auto bg-eat-fuccia-500 hover:bg-eat-fuccia-700 transform hover:scale-110">Ver comidas</x-utils.button>
+                      </div>
+                    </div><!-- TEXT -->
+                  </div>
+                </div>
+              </div>
+            </div><!--Termina personalizado -->
+
+            
+
+            
+          </div><!-- Contenedor personalizados GRID -->
+
+
+
+        </div><!-- Clientes personalizados -->
 
 
 <!-- Daily trending menu -->
@@ -463,8 +565,8 @@
             <div class="transition-all bg-eat-green-500  hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
               <div class="xl:mx-2">
                 <p class="text-lg text-center font-bold text-gray-500 pt-2">LUNES</p>
-                <div class="w-auto h-auto pb-4 mt-2">
-                  <img  class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1550317138-10000687a72b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1093&q=80" alt="">
+                <div class="w-auto h-36 pb-4 mt-2">
+                  <img  class="w-full h-full object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1550317138-10000687a72b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1093&q=80" alt="">
                 </div>
                 <p class="text-xl text-center font-bold pb-2">Meat balls</p>
               </div><!-- Lun -->
@@ -473,8 +575,8 @@
             <div class="transition-all bg-eat-green-500  hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
               <div class="xl:mx-2">
                 <p class="text-lg text-center font-bold text-gray-500 pt-2">MARTES</p>
-                <div class="w-auto h-auto pb-4 mt-2">
-                  <img  class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1617219474299-b17c6a43834d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1079&q=80" alt="">
+                <div class="w-auto h-36 pb-4 mt-2">
+                  <img  class="w-full h-full object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1617219474299-b17c6a43834d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1079&q=80" alt="">
                 </div>
                 <p class="text-xl text-center font-bold pb-2">De la nutri</p>
               </div><!-- Lun -->
@@ -483,8 +585,8 @@
             <div class="transition-all bg-eat-green-500 hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
               <div class="xl:mx-2">
                 <p class="text-lg text-center font-bold text-gray-500 pt-2">MIERCOLES</p>
-                <div class="w-auto h-auto pb-4 mt-2">
-                  <img  class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1551978129-b73f45d132eb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1004&q=80" alt="">
+                <div class="w-auto h-36 pb-4 mt-2">
+                  <img  class="w-full h-full object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1551978129-b73f45d132eb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1004&q=80" alt="">
                 </div>
                 <p class="text-xl text-center font-bold pb-2">Meat balls</p>
               </div><!-- Mier -->
@@ -493,8 +595,8 @@
             <div class="transition-all bg-eat-green-500 hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
               <div class="xl:mx-2">
                 <p class="text-lg text-center font-bold text-gray-500 pt-2">JUEVES</p>
-                <div class="w-auto h-auto pb-4 mt-2">
-                  <img  class="w-44 sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=968&q=80" alt="">
+                <div class="w-auto h-36 pb-4 mt-2">
+                  <img  class="w-full h-full object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=968&q=80" alt="">
                 </div>
                 <p class="text-xl text-center font-bold pb-2">Meat balls</p>
               </div><!-- Juev -->
@@ -503,8 +605,8 @@
             <div class="transition-all bg-eat-green-500 hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
               <div class="xl:mx-2">
                 <p class="text-lg text-center font-bold text-gray-500 pt-2">VIERNES</p>
-                <div class="w-auto h-auto pb-4 mt-2">
-                  <img  class="w-44 object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="">
+                <div class="w-auto h-36 pb-4 mt-2">
+                  <img  class="w-full h-full object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="">
                 </div>
                 <p class="text-xl text-center font-bold pb-2">Meat balls</p>
               </div><!-- Lun -->
@@ -529,7 +631,7 @@
                   <img  class="w-full h-full object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1458642849426-cfb724f15ef7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="">
                 </div>
                 <p class="text-xl text-center font-bold pb-2">Pizza fit</p>
-              </div><!-- Lun -->
+              </div><!-- 1 -->
             </div><!-- ter -->
 
             <div class="transition-all bg-eat-green-500  hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
@@ -539,7 +641,7 @@
                   <img  class="w-full h-full object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1583577612013-4fecf7bf8f13?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=874&q=80" alt="">
                 </div>
                 <p class="text-xl text-center font-bold pb-2">Agua del dìa</p>
-              </div><!-- Lun -->
+              </div><!-- 2 -->
             </div><!-- ter -->
        
           </div>
