@@ -559,7 +559,7 @@
       
     <div class="2xl:flex 2xl:flex-col">
       <div class="h-full 2xl:flex-1 rounded-md shadow-md lg:mr-4">
-        <x-utils.subsubtitle class="p-5 text-center">Promocion semanal</x-utils.subsubtitle>
+        <x-utils.subsubtitle class="p-5 text-center">Paquete semanal almuerzos</x-utils.subsubtitle>
           
           <div class="md:flex md:justify-between">
             <div class="transition-all bg-eat-green-500  hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
@@ -617,7 +617,68 @@
             <x-utils.subsubtitle class="ml-1 text-center my-2">Precio: <b class="text-gray-400">$</b><span class="text-gray-400">450.00</span> </x-utils.subsubtitle>
             <x-utils.button class="w-full md:w-48 justify-center " color="eat-fuccia">Editar promocion semanal</x-componets.button>
           </div>
-      </div><!-- Comida semanal -->
+      </div><!-- Comida semanal almuerzo -->
+
+      <div class="h-full 2xl:flex-1 rounded-md shadow-md lg:mr-4">
+        <x-utils.subsubtitle class="p-5 text-center">Paquete semanal comidas</x-utils.subsubtitle>
+          
+          <div class="md:flex md:justify-between">
+            <div class="transition-all bg-eat-green-500  hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
+              <div class="xl:mx-2">
+                <p class="text-lg text-center font-bold text-gray-500 pt-2">LUNES</p>
+                <div class="w-auto h-36 pb-4 mt-2">
+                  <img  class="w-full h-full object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1550317138-10000687a72b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1093&q=80" alt="">
+                </div>
+                <p class="text-xl text-center font-bold pb-2">Meat balls</p>
+              </div><!-- Lun -->
+            </div><!-- ter -->
+
+            <div class="transition-all bg-eat-green-500  hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
+              <div class="xl:mx-2">
+                <p class="text-lg text-center font-bold text-gray-500 pt-2">MARTES</p>
+                <div class="w-auto h-36 pb-4 mt-2">
+                  <img  class="w-full h-full object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1617219474299-b17c6a43834d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1079&q=80" alt="">
+                </div>
+                <p class="text-xl text-center font-bold pb-2">De la nutri</p>
+              </div><!-- Lun -->
+            </div><!-- ter -->
+
+            <div class="transition-all bg-eat-green-500 hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
+              <div class="xl:mx-2">
+                <p class="text-lg text-center font-bold text-gray-500 pt-2">MIERCOLES</p>
+                <div class="w-auto h-36 pb-4 mt-2">
+                  <img  class="w-full h-full object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1551978129-b73f45d132eb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1004&q=80" alt="">
+                </div>
+                <p class="text-xl text-center font-bold pb-2">Meat balls</p>
+              </div><!-- Mier -->
+            </div><!-- ter -->
+
+            <div class="transition-all bg-eat-green-500 hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
+              <div class="xl:mx-2">
+                <p class="text-lg text-center font-bold text-gray-500 pt-2">JUEVES</p>
+                <div class="w-auto h-36 pb-4 mt-2">
+                  <img  class="w-full h-full object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1485963631004-f2f00b1d6606?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=968&q=80" alt="">
+                </div>
+                <p class="text-xl text-center font-bold pb-2">Meat balls</p>
+              </div><!-- Juev -->
+            </div><!-- ter -->
+
+            <div class="transition-all bg-eat-green-500 hover:bg-eat-green-600 rounded-lg m-4"><!-- emp -->
+              <div class="xl:mx-2">
+                <p class="text-lg text-center font-bold text-gray-500 pt-2">VIERNES</p>
+                <div class="w-auto h-36 pb-4 mt-2">
+                  <img  class="w-full h-full object-cover sm:w-56 mx-auto rounded-md transform transition translate hover:translate-y-2" src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="">
+                </div>
+                <p class="text-xl text-center font-bold pb-2">Meat balls</p>
+              </div><!-- Lun -->
+            </div><!-- ter -->          
+          </div>
+
+          <div class="mx-4 pb-4 md:flex md:justify-between mt-4">
+            <x-utils.subsubtitle class="ml-1 text-center my-2">Precio: <b class="text-gray-400">$</b><span class="text-gray-400">450.00</span> </x-utils.subsubtitle>
+            <x-utils.button class="w-full md:w-48 justify-center " color="eat-fuccia">Editar promocion semanal</x-componets.button>
+          </div>
+      </div><!-- Comida semanal Comidas -->
 
       <div class="h-full 2xl:flex-1 rounded-md shadow-md lg:mr-4 2xl:mt-8">
         <x-utils.subsubtitle class="p-5 text-center">Promocion Diaria (Combo)</x-utils.subsubtitle>
