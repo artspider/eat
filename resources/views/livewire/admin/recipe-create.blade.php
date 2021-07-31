@@ -388,7 +388,7 @@
 <script>
 
   Livewire.on('success', message => {
-    StayOrLeave(message,'¿Deseas agregar otro?','/admin/menus');
+    StayOrLeave(message,'¿Deseas agregar otro?','/admin/recipes');
   });
 
   Livewire.on('error', message => {

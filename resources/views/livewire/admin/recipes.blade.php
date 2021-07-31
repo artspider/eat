@@ -76,7 +76,7 @@
                 <span
                   class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Acciones</span>
                 <div class="flex justify-center">
-                  <a href="{{ route('admin-recipes-edit', [$recipe->name]) }}" id="editRecipe"
+                  <a href="{{ route('admin-recipes-edit', [$recipe->slug]) }}" id="editRecipe"
                     data-title='Edita los datos de la receta' data-placement="left"
                     class="tooltip_recipe mr-3 text-eat-green-400 hover:text-eat-green-600 underline">
                     <x-icons.edit />

@@ -15,7 +15,6 @@ class Recipes extends Component
     public $search;
 
     protected $listeners = [
-        'success' => 'newMenu',
         'deleteRecipe' => 'remove'
     ];
 

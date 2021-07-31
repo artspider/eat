@@ -37,4 +37,12 @@ class Recipe extends Model
         return $this->belongsTo('App\Models\RecipeCategory');
     }
 
+    function ingredients()
+    {
+        return $this->belongsToMany('App\Models\Product', 'recipe_ingredients')
+        ->withTimestamps()
+        ->withPivot('qty', 'unit_id')
+        ->orderBy('name');
+    }
+
 }
