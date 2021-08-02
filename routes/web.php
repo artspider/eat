@@ -17,6 +17,11 @@ Route::get('/admin/dashboardmanager', function () {
 })
 ->middleware('is_admin','auth:sanctum')
 ->name('admin');
+Route::get('/admin/generaldashboard', function () {
+    return view('generaldashboard');
+})
+->middleware('is_admin','auth:sanctum')
+->name('admin');
 
 
 /* Route::get('/admin', App\Http\Livewire\Admin\Dashboard::class)
