@@ -11,6 +11,7 @@ use App\Models\RecipeIngredient;
 use App\Models\RecipeImage;
 use App\Models\NutritionInformation;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Str;
 
 class RecipeCreate extends Component
 {
@@ -194,6 +195,7 @@ class RecipeCreate extends Component
         
         $recipe = new Recipe();
         $recipe->name = $this->name;
+        $recipe->slug = Str::slug($this->name, '-');
         $recipe->recipe_category_id = $this->recipe_category_id;
         $recipe->description = $this->description;
         $recipe->prepTime = $this->prepTime;

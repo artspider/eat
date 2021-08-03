@@ -43,4 +43,10 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\Category');
     }
+
+    public function recipes()
+    {
+        return $this->belongsToMany('App\Models\Recipe');
+    }
+
 }
