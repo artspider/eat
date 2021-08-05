@@ -39,10 +39,15 @@ class Recipe extends Model
 
     function ingredients()
     {
-        return $this->belongsToMany('App\Models\Product', 'recipe_ingredients')
+        return $this->belongsToMany('App\Models\Product', 'product_recipe')
         ->withTimestamps()
         ->withPivot('qty', 'unit_id')
         ->orderBy('name');
+    }
+
+    function nutrition()
+    {
+        return $this->hasOne('App\Models\NutritionInformation');
     }
 
 }

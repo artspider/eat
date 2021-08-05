@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DishController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -51,8 +52,14 @@ Route::prefix('admin')->group(function () {
         Route::get('/recipes/edit/{recipe:slug}', App\Http\Livewire\Admin\RecipeEdit::class)
         ->name('admin-recipes-edit');
 
-        Route::get('/dishes', App\Http\Livewire\Admin\Dishes::class)
+        /* Route::get('/dishes', App\Http\Livewire\Admin\Dishes::class)
+        ->name('admin-dishes'); */
+
+        Route::get('/dishes', [DishController::class, 'index'])
         ->name('admin-dishes');
+
+        Route::get('/dishes/create',App\Http\Livewire\Admin\DishCreate::class)
+        ->name('admin-dishes-create');
     });
 
     

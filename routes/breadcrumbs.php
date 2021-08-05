@@ -59,3 +59,13 @@ Breadcrumbs::for('recipes-create', function ($trail) {
     $trail->parent('recipes');
     $trail->push('Add Recipe', route('admin-recipes-create'));
 });
+
+Breadcrumbs::for('dishes', function ($trail) {
+    $trail->parent('admin');
+    $trail->push('Dishes', route('admin-dishes'));    
+});
+
+Breadcrumbs::for('dishes-create', function ($trail) {
+    $trail->parent('admin');
+    $trail->push('Add Dish', route('admin-dishes-create'));    
+});

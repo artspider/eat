@@ -15,7 +15,7 @@ class CreateNutritionInformationTable extends Migration
     {
         Schema::create('nutrition_information', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('recipe_id')->constrained;
+            $table->foreignId('recipe_id')->constrained()->onDelete('cascade');
             $table->mediumInteger('calories');
             $table->mediumInteger('carbohydrateContent')->nullable();
             $table->mediumInteger('cholesterolContent')->nullable();

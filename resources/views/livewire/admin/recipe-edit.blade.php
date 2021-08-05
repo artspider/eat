@@ -215,7 +215,7 @@
 													@endif
 													@endforeach
 												</ul>
-												{{$units}}
+
 											</div>
 										</div>
 									</div>
@@ -288,75 +288,142 @@
 
 				<div x-show="tab===2" class="block lg:grid grid-cols-1 gap-4 place-items-center">
 					<div class="col-span-1 w-2/3 my-8">
-						<div class="">
-							<label for="nutritionInfo" class="block text-sm font-medium leading-5 text-eat-olive-700">Información
-								nutricional</label>
 
-							<div class="flex items-center">
-								<div class="w-full md:w-1/2 mr-1 ">
-									<div x-data="{open: false}">
-										<div class="relative">
-											<div x-on:click="open=true"
-												class="w-full h-10 bg bg-eat-white-500 rounded-md shadow-lg flex items-center justify-between">
-												<x-utils.text class="ml-4">{{$nutritionItemName}}</x-utils.text>
-												<x-icons.chevron class="mr-4 text-eat-olive-500 " />
-											</div>
+						<p class="block text-sm font-medium leading-5 text-eat-olive-700 mb-2">Información
+							nutricional (todas en gramos, excepto Calorías)</p>
 
-											<div x-show="open" x-on:click.away="open=false">
-												<div class=" z-10 absolute top-10 w-full bg-eat-green-100 mr-10 rounded">
-													<ul>
-														@foreach ($nutritionInfo as $key => $nutritionItem)
-														@if ($nutritionItem == $nutritionItemName)
-														<li wire:click="SelectNutritionItem('{{$nutritionItem}}', {{$key}})" href="#"
-															class="block cursor-pointer w-full text-sm bg-eat-olive-500 text-eat-white-500 font-light font-montserrat text-left px-4 py-2 hover:bg-eat-olive-100 hover:text-eat-white-100">
-															{{$nutritionItem}}</li>
-														@else
-														<li x-on:click="open=false" wire:click="SelectNutritionItem('{{$nutritionItem}}', {{$key}})"
-															href="#"
-															class="block cursor-pointer w-full text-sm text-eat-olive-500 font-light font-montserrat text-left px-4 py-2 hover:bg-eat-olive-100 hover:text-eat-white-100">
-															{{$nutritionItem}}</li>
-														@endif
-														@endforeach
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex items-center relative w-1/3">
-									<x-utils.text-input wire:model="nutritionQty" type="number" label="" :required="false" placeholder="0"
-										class="w-full mr-2" />
-									<p class=" absolute top-3 left-14 text-eat-olive-600 text-sm">{{$nutritionUnitName}}</p>
-								</div>
-								<x-icons.add wire:click.debounce.150ms="addNutritionItem()" class="text-eat-olive-500 cursor-pointer" />
-							</div>
-
+						<div class="flex items-center mb-2">
+							<label for="" class="w-3/12 flex items-center">
+								<input type="checkbox" id="" value="Tam_porcion" wire:model="tam_porcion"
+									class="form-input bg-eat-green-500 text-eat-olive-900 font-montserrat placeholder-eat-olive-50 border
+                    border-transparent focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent">
+								<span class="ml-2 text-eat-olive-500 font-montserrat">Tamaño</span>
+							</label>
+							<x-utils.text-input wire:model="servingSize" type="text" label="" :required="false"
+								placeholder="Tamaño de la porción" class="w-2/3 mt-0" />
 						</div>
-						@if ($nutritionList)
-						<ul class="mt-8">
-							@foreach ($nutritionList as $key => $nutritionItem)
-							<div class="flex items-center mt-4">
-								<div class="flex items-center w-3/5">
-									<p
-										class="w-10 h-10 rounded-full pt-2 text-center mr-4 bg-eat-fuccia-500 text-eat-white-500 text-sm font-montserrat">
-										{{$loop->index + 1}} </p>
-									<li class="text-eat-olive-500 font-montserrat text-sm"> {{$key}} {{$nutritionItem}} </li>
-								</div>
 
-								<div wire:click="deleteNutritionItem( ' hola')" class="text-eat-fuccia-500 w-6 cursor-pointer">
-									<x-icons.remove />
-								</div>
-							</div>
-
-							@endforeach
-						</ul>
-						@else
-						<div class="mt-4">
-							<x-icons.not-found w='24' h='24' />
-							<x-utils.text class="text-center">Sin información nutrimental</x-utils.text>
+						<div class="flex items-center mb-2">
+							<label for="" class="w-3/12 flex items-center">
+								<input type="checkbox" id="" value="Calorias" wire:model="calorias"
+									class="form-input bg-eat-green-500 text-eat-olive-900 font-montserrat placeholder-eat-olive-50 border
+                  border-transparent focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent">
+								<span class="ml-2 text-eat-olive-500 font-montserrat">Calorias</span>
+							</label>
+							<x-utils.text-input wire:model="calories" type="text" label="" :required="false"
+								placeholder="Calorias por porción" class="w-2/3 mt-0" />
 						</div>
-						@endif
+
+						<div class="flex items-center mb-2">
+							<label for="" class="w-3/12 flex items-center">
+								<input type="checkbox" id="" value="Carbohidratos" wire:model="carbohidratos"
+									class="form-input bg-eat-green-500 text-eat-olive-900 font-montserrat placeholder-eat-olive-50 border
+                  border-transparent focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent">
+								<span class="ml-2 text-eat-olive-500 font-montserrat">Carbohidratos</span>
+							</label>
+							<x-utils.text-input wire:model="carbohydrateContent" type="text" label="" :required="false"
+								placeholder="Carbohidratos por porción" class="w-2/3 mt-0" />
+						</div>
+
+						<div class="flex items-center mb-2">
+							<label for="" class="w-3/12 flex items-center">
+								<input type="checkbox" id="" value="Colesterol" wire:model="colesterol"
+									class="form-input bg-eat-green-500 text-eat-olive-900 font-montserrat placeholder-eat-olive-50 border
+                  border-transparent focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent">
+								<span class="ml-2 text-eat-olive-500 font-montserrat">Colesterol</span>
+							</label>
+							<x-utils.text-input wire:model="cholesterolContent" type="text" label="" :required="false"
+								placeholder="Colesterol por porción" class="w-2/3 mt-0" />
+						</div>
+
+						<div class="flex items-center mb-2">
+							<label for="" class="w-3/12 flex items-center">
+								<input type="checkbox" id="" value="Grasas" wire:model="Grasas"
+									class="form-input bg-eat-green-500 text-eat-olive-900 font-montserrat placeholder-eat-olive-50 border
+                  border-transparent focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent">
+								<span class="ml-2 text-eat-olive-500 font-montserrat">Grasas</span>
+							</label>
+							<x-utils.text-input wire:model="fatContent" type="text" label="" :required="false"
+								placeholder="Grasas por porción" class="w-2/3 mt-0" />
+						</div>
+
+						<div class="flex items-center mb-2">
+							<label for="" class="w-3/12 flex items-center">
+								<input type="checkbox" id="" value="Grasas Saturadas" wire:model="grasas_saturadas"
+									class="form-input bg-eat-green-500 text-eat-olive-900 font-montserrat placeholder-eat-olive-50 border
+                  border-transparent focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent">
+								<span class="ml-2 text-eat-olive-500 font-montserrat">Grasas Saturadas</span>
+							</label>
+							<x-utils.text-input wire:model="saturatedFatContent" type="text" label="" :required="false"
+								placeholder="Grasas Saturadas por porción" class="w-2/3 mt-0" />
+						</div>
+
+						<div class="flex items-center mb-2">
+							<label for="" class="w-3/12 flex items-center">
+								<input type="checkbox" id="" value="Grasas Trans" wire:model="grasas_trans"
+									class="form-input bg-eat-green-500 text-eat-olive-900 font-montserrat placeholder-eat-olive-50 border
+                  border-transparent focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent">
+								<span class="ml-2 text-eat-olive-500 font-montserrat">Grasas Trans</span>
+							</label>
+							<x-utils.text-input wire:model="transFatContent" type="text" label="" :required="false"
+								placeholder="Grasas Trans por porción" class="w-2/3 mt-0" />
+						</div>
+
+						<div class="flex items-center mb-2">
+							<label for="" class="w-3/12 flex items-center">
+								<input type="checkbox" id="" value="Grasas No Saturadas" wire:model="grasas_no_saturadas"
+									class="form-input bg-eat-green-500 text-eat-olive-900 font-montserrat placeholder-eat-olive-50 border
+                  border-transparent focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent">
+								<span class="ml-2 text-eat-olive-500 font-montserrat">Grasas No Saturadas</span>
+							</label>
+							<x-utils.text-input wire:model="unsaturatedFatContent" type="text" label="" :required="false"
+								placeholder="Grasas No Saturadas por porción" class="w-2/3 mt-0" />
+						</div>
+
+						<div class="flex items-center mb-2">
+							<label for="" class="w-3/12 flex items-center">
+								<input type="checkbox" id="" value="Fibra" wire:model="fibra"
+									class="form-input bg-eat-green-500 text-eat-olive-900 font-montserrat placeholder-eat-olive-50 border
+                  border-transparent focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent">
+								<span class="ml-2 text-eat-olive-500 font-montserrat">Fibra</span>
+							</label>
+							<x-utils.text-input wire:model="fiberContent" type="text" label="" :required="false"
+								placeholder="Fibra por porción" class="w-2/3 mt-0" />
+						</div>
+
+						<div class="flex items-center mb-2">
+							<label for="" class="w-3/12 flex items-center">
+								<input type="checkbox" id="" value="Proteína" wire:model="proteina"
+									class="form-input bg-eat-green-500 text-eat-olive-900 font-montserrat placeholder-eat-olive-50 border
+                  border-transparent focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent">
+								<span class="ml-2 text-eat-olive-500 font-montserrat">Proteína</span>
+							</label>
+							<x-utils.text-input wire:model="proteinContent" type="text" label="" :required="false"
+								placeholder="Proteína por porción" class="w-2/3 mt-0" />
+						</div>
+
+						<div class="flex items-center mb-2">
+							<label for="" class="w-3/12 flex items-center">
+								<input type="checkbox" id="" value="Sodio" wire:model="sodio"
+									class="form-input bg-eat-green-500 text-eat-olive-900 font-montserrat placeholder-eat-olive-50 border
+                  border-transparent focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent">
+								<span class="ml-2 text-eat-olive-500 font-montserrat">Sodio</span>
+							</label>
+							<x-utils.text-input wire:model="sodiumContent" type="text" label="" :required="false"
+								placeholder="Sodio por porción" class="w-2/3 mt-0" />
+						</div>
+
+						<div class="flex items-center mb-2">
+							<label for="" class="w-3/12 flex items-center">
+								<input type="checkbox" id="" value="Azúcar" wire:model="azucar"
+									class="form-input bg-eat-green-500 text-eat-olive-900 font-montserrat placeholder-eat-olive-50 border
+                  border-transparent focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent">
+								<span class="ml-2 text-eat-olive-500 font-montserrat">Azúcar</span>
+							</label>
+							<x-utils.text-input wire:model="sugarContent" type="text" label="" :required="false"
+								placeholder="Azúcar por porción" class="w-2/3 mt-0" />
+						</div>
+
 					</div>
 				</div>
 

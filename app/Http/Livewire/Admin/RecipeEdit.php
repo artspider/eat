@@ -7,7 +7,7 @@ use App\Models\Recipe;
 use App\Models\Unit;
 use App\Models\Product;
 use App\Models\RecipeCategory;
-use App\Models\RecipeIngredient;
+use App\Models\ProductRecipe;
 use App\Models\RecipeImage;
 use App\Models\NutritionInformation;
 use Livewire\WithFileUploads;
@@ -58,6 +58,32 @@ class RecipeEdit extends Component
     public $nutritionList=[];
     public $nutritionQty=1;
     public $photoHasChanged = false;
+
+    public $servingSize;
+    public $calories;
+    public $carbohydrateContent;
+    public $cholesterolContent;
+    public $fatContent;
+    public $saturatedFatContent;
+    public $transFatContent;
+    public $unsaturatedFatContent;
+    public $fiberContent;
+    public $proteinContent;
+    public $sodiumContent;
+    public $sugarContent;
+
+    public $tam_porcion;
+    public $calorias = 'Calorias';
+    public $carbohidratos;
+    public $colesterol;
+    public $grasas;
+    public $grasas_saturadas;
+    public $grasas_trans;
+    public $grasas_no_saturadas;
+    public $fibra;
+    public $proteina;
+    public $sodio;
+    public $azucar;
 
     public $queryProduct;
 
@@ -160,14 +186,25 @@ class RecipeEdit extends Component
 
     public function addIngredient()
     {
-        array_push(
-            $this->ingredientList,array(
-                'qty' => $this->ingredientQty,
-                'unit' => $this->unitName,
-                'product' => $this->productName
-            )
-        );
-        
+        $product = Product::where('name', $this->productName)->first();
+        if($product)
+        {
+            array_push(
+                $this->ingredientList,array(
+                    'qty' => $this->ingredientQty,
+                    'unit' => $this->unitName,
+                    'product' => $this->productName
+                )
+            );
+
+            $this->AddToCost($product);
+            $this->AddToServingSize();
+            $this->ingredientQty = 1;
+            $this->unitName = 'Unidad...';
+            $this->productName = 'Producto...';
+        }else{
+            $this->emit('error', 'El producto no existe...');    
+        }                
     }
 
     public function SelectNutritionItem($nutritionItem, $key)
@@ -193,16 +230,55 @@ class RecipeEdit extends Component
             'Azúcar' => 'sugarContent',
         ];
 
-        $nutritionInformation = NutritionInformation::where('recipe_id',$this->recipe->id)->get();
-        
-        foreach($nutritionMap as $key => $nutritionItem)
-        {
-            if(!empty($nutritionInformation[0]->$nutritionItem))
-            {
-                
-                $this->nutritionList[$nutritionItem] = $nutritionInformation[0]->$nutritionItem;
-                
-            }
+        $nutritionInformation = NutritionInformation::where('recipe_id',$this->recipe->id)->first();
+
+        if(!empty($nutritionInformation->calories)) { 
+            $this->calories = $nutritionInformation->calories;
+            $this->calorias = 'Calorias';
+        }
+        if(!empty($nutritionInformation->carbohydrateContent)) { 
+            $this->carbohydrateContent =  $nutritionInformation->carbohydrateContent; 
+            $this->carbohidratos = 'Carbohidratos';
+        }
+        if(!empty($nutritionInformation->cholesterolContent)) { 
+            $this->cholesterolContent =  $nutritionInformation->cholesterolContent;
+            $this->colesterol = 'Colesterol';
+        }
+        if(!empty($nutritionInformation->fatContent)) { 
+            $this->fatContent =  $nutritionInformation->fatContent;
+            $this->grasas = 'Grasas';
+        }
+        if(!empty($nutritionInformation->fiberContent)) { 
+            $this->fiberContent =  $nutritionInformation->fiberContent;
+            $this->fibra = 'Fibra';
+        }
+        if(!empty($nutritionInformation->proteinContent)) { 
+            $this->proteinContent =  $nutritionInformation->proteinContent; 
+            $this->proteina = 'Proteina';
+        }
+        if(!empty($nutritionInformation->saturatedFatContent)) { 
+            $this->saturatedFatContent =  $nutritionInformation->saturatedFatContent;
+            $this->grasas_saturadas = "Grasas Saturadas";
+        }
+        if(!empty($nutritionInformation->servingSize)) { 
+            $this->servingSize =  $nutritionInformation->servingSize;
+            $this->tam_porcion = 'Tam_porcion';
+        }
+        if(!empty($nutritionInformation->sodiumContent)) { 
+            $this->sodiumContent =  $nutritionInformation->sodiumContent;
+            $this->sodio = 'Sodio';
+        }
+        if(!empty($nutritionInformation->sugarContent)) { 
+            $this->sugarContent =  $nutritionInformation->sugarContent;
+            $this->azucar = 'Azucar';
+        }
+        if(!empty($nutritionInformation->transFatContent)) { 
+            $this->transFatContent =  $nutritionInformation->transFatContent;
+            $this->grasas_trans = 'Grasas Trans';
+        }
+        if(!empty($nutritionInformation->unsaturatedFatContent)) { 
+            $this->unsaturatedFatContent =  $this->unsaturatedFatContent;
+            $this->grasas_no_saturadas = 'Grasas No Saturadas';
         }
         
     }
@@ -256,7 +332,17 @@ class RecipeEdit extends Component
 
     public function deleteIngredient($key)
     {
-        unset($this->ingredientList[$key]);
+        $product = Product::where('name', $this->ingredientList[$key]['product'])->first();        
+        $qty = $this->ingredientList[$key]['qty'];
+        if($product)
+        {
+            
+            $this->SubToCost($product, $key);
+            $this->SubToServingSize($key);
+            unset($this->ingredientList[$key]);
+        }else{
+            $this->emit('error', 'El producto no existe...');    
+        }                
     }
 
     public function deleteNutritionItem($key)
@@ -321,12 +407,12 @@ class RecipeEdit extends Component
 
         if($this->ingredientList)
         {
-            $deleteIngredients = RecipeIngredient::where('recipe_id',$this->recipe->id)->delete();
+            $deleteIngredients = ProductRecipe::where('recipe_id',$this->recipe->id)->delete();
             foreach($this->ingredientList as $ingredient) {
                 $product = Product::where('name',$ingredient['product'])->first();
                 
                 $unit = Unit::where('unit',$ingredient['unit'])->first();
-                $ingredientItem = RecipeIngredient::create([
+                $ingredientItem = ProductRecipe::create([
                     'recipe_id' => $this->recipe->id,
                     'product_id' => $product->id,
                     'qty' => $ingredient['qty'],
@@ -335,26 +421,95 @@ class RecipeEdit extends Component
             }
         }
         
-        if($this->nutritionList){
-            $nutritionInfo = NutritionInformation::where('recipe_id',$this->recipe->id)->first();
-            
-            foreach($this->nutritionList as $key => $nutritionItem){
-                if($key == 'calories') { $nutritionInfo->calories =  $nutritionItem; }
-                if($key == 'carbohydrateContent') { $nutritionInfo->carbohydrateContent =  $nutritionItem; }
-                if($key == 'cholesterolContent') { $nutritionInfo->cholesterolContent =  $nutritionItem; }
-                if($key == 'fatContent') { $nutritionInfo->fatContent =  $nutritionItem; }
-                if($key == 'fiberContent') { $nutritionInfo->fiberContent =  $nutritionItem; }
-                if($key == 'proteinContent') { $nutritionInfo->proteinContent =  $nutritionItem; }
-                if($key == 'saturatedFatContent') { $nutritionInfo->saturatedFatContent =  $nutritionItem; }
-                if($key == 'servingSize') { $nutritionInfo->servingSize =  $nutritionItem; }
-                if($key == 'sodiumContent') { $nutritionInfo->sodiumContent =  $nutritionItem; }
-                if($key == 'sugarContent') { $nutritionInfo->sugarContent =  $nutritionItem; }
-                if($key == 'transFatContent') { $nutritionInfo->transFatContent =  $nutritionItem; }
-                if($key == 'unsaturatedFatContent') { $nutritionInfo->unsaturatedFatContent =  $nutritionItem; }
-            }
-            $nutritionInfo->save();
-        }
+        $nutritionInfo = NutritionInformation::where('recipe_id',$this->recipe->id)->first();
+        if($this->calorias) { $nutritionInfo->calories =  $this->calories; }
+        if($this->carbohidratos) { $nutritionInfo->carbohydrateContent =  $this->carbohydrateContent; }
+        if($this->colesterol) { $nutritionInfo->cholesterolContent =  $this->cholesterolContent; }
+        if($this->grasas) { $nutritionInfo->fatContent =  $this->fatContent; }
+        if($this->fibra) { $nutritionInfo->fiberContent =  $this->fiberContent; }
+        if($this->proteina) { $nutritionInfo->proteinContent =  $this->proteinContent; }
+        if($this->grasas_saturadas) { $nutritionInfo->saturatedFatContent =  $this->saturatedFatContent; }
+        if($this->tam_porcion) { $nutritionInfo->servingSize =  $this->servingSize; }
+        if($this->sodio) { $nutritionInfo->sodiumContent =  $this->sodiumContent; }
+        if($this->azucar) { $nutritionInfo->sugarContent =  $this->sugarContent; }
+        if($this->grasas_trans) { $nutritionInfo->transFatContent =  $this->transFatContent; }
+        if($this->grasas_no_saturadas) { $nutritionInfo->unsaturatedFatContent =  $this->unsaturatedFatContent; }
+
+        $nutritionInfo->save();
 
         $this->emit('success', 'Se ha moificado la receta');
+    }
+
+    private function AddToCost(Product $product)
+    {
+        $unit = $product->unit()->first()->unit;
+        $measure = 1;
+        $multiply = $measure * $product->content;
+        $cost_per_gr_ml=0;
+        if($unit == 'Kilogramo' || $unit == 'Litro'){
+            $measure = $multiply * 1000;
+            $cost_per_gr_ml = $product->price / $measure;            
+        }elseif($unit == 'Gramo' || $unit == 'Mililitro'){
+            $cost_per_gr_ml = $product->price / $multiply;
+        }
+        if($this->unitName == 'Kilogramo' || $this->unitName == 'Litro'){
+            $this->cost = $this->cost + ($cost_per_gr_ml * ($this->ingredientQty*1000));
+        }else{
+            $this->cost = $this->cost + ($cost_per_gr_ml * $this->ingredientQty);
+        }
+        /* $this->cost = $this->cost + ($cost_per_gr_ml * $this->ingredientQty); */
+    }
+
+    private function AddToServingSize()
+    {
+        $measure = 1;
+        $ingredientQty = $this->ingredientQty;
+
+        if($this->unitName == 'Kilogramo' || $this->unitName == 'Litro'){            
+            $ingredientQty = $this->ingredientQty * 1000;
+        }
+        $this->servingSize = $this->servingSize + $ingredientQty;
+    }
+
+    private function SubToCost(Product $product, $key)
+    {
+        $unit = $product->unit()->first()->unit;
+        $qty = $this->ingredientList[$key]['qty'];
+        $dunit = $this->ingredientList[$key]['unit'];
+        $measure = 1;
+        $multiply = $measure * $product->content;
+        $cost_per_gr_ml=0;
+        if($unit == 'Kilogramo' || $unit == 'Litro'){
+            $measure = $multiply * 1000;
+            $cost_per_gr_ml = $product->price / $measure;
+        }
+        if($unit == 'Gramo' || $unit == 'Mililitro'){
+            $cost_per_gr_ml = $product->price / $multiply;
+        }
+        
+        if($dunit == 'Kilogramo' || $dunit == 'Litro'){
+            $this->cost = $this->cost - ($cost_per_gr_ml * ($qty*1000));
+        }else{
+            $this->cost = $this->cost - ($cost_per_gr_ml * $qty);
+        }
+        /* $this->cost = $this->cost - ($cost_per_gr_ml * $qty); */
+        if(count($this->ingredientList) <= 0){
+            $this->cost = 0;
+        }
+    }
+
+    private function SubToServingSize($key)
+    {
+        $qty = $this->ingredientList[$key]['qty'];
+        $unit = $this->ingredientList[$key]['unit'];
+        $measure = 1;
+
+        if($unit == 'Kilogramo' || $unit == 'Litro'){            
+            $qty = $qty * 1000;
+        }
+        $this->servingSize = $this->servingSize - $qty;
+        if(count($this->ingredientList) == 0){
+            $this->servingSize = 0;
+        }
     }
 }

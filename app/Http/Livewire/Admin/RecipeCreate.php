@@ -7,7 +7,7 @@ use App\Models\Recipe;
 use App\Models\Unit;
 use App\Models\Product;
 use App\Models\RecipeCategory;
-use App\Models\RecipeIngredient;
+use App\Models\ProductRecipe;
 use App\Models\RecipeImage;
 use App\Models\NutritionInformation;
 use Livewire\WithFileUploads;
@@ -24,11 +24,11 @@ class RecipeCreate extends Component
     public $prepTime=0;
     public $cookTime=0;
     public $totalTime=0;
-    public $recipeYield;
+    public $recipeYield=1;
     public $suitableForDiet;
     public $recipeCuisine;
-    public $price;
-    public $cost;
+    public $price=0;
+    public $cost=0;
     public $costPriceRatio;
     public $mc;
     public $profitableness;
@@ -55,7 +55,34 @@ class RecipeCreate extends Component
     public $nutritionList=[];
     public $nutritionQty=1;
 
+    public $servingSize = 0;
+    public $calories=0;
+    public $carbohydrateContent;
+    public $cholesterolContent;
+    public $fatContent;
+    public $saturatedFatContent;
+    public $transFatContent;
+    public $unsaturatedFatContent;
+    public $fiberContent;
+    public $proteinContent;
+    public $sodiumContent;
+    public $sugarContent;
+
+    public $tam_porcion ='Tam_porcion';
+    public $calorias = 'Calorias';
+    public $carbohidratos;
+    public $colesterol;
+    public $grasas;
+    public $grasas_saturadas;
+    public $grasas_trans;
+    public $grasas_no_saturadas;
+    public $fibra;
+    public $proteina;
+    public $sodio;
+    public $azucar;
+
     public $queryProduct;
+    public $tabSelection=0;
 
     public function mount()
     {
@@ -121,14 +148,25 @@ class RecipeCreate extends Component
 
     public function addIngredient()
     {
-        array_push(
-            $this->ingredientList,array(
-                'qty' => $this->ingredientQty,
-                'unit' => $this->unitName,
-                'product' => $this->productName
-            )
-        );
-        logger($this->ingredientList);
+        $product = Product::where('name', $this->productName)->first();
+        if($product)
+        {
+            array_push(
+                $this->ingredientList,array(
+                    'qty' => $this->ingredientQty,
+                    'unit' => $this->unitName,
+                    'product' => $this->productName
+                )
+            );
+
+            $this->AddToCost($product);
+            $this->AddToServingSize();
+            $this->ingredientQty = 1;
+            $this->unitName = 'Unidad...';
+            $this->productName = 'Producto...';
+        }else{
+            $this->emit('error', 'El producto no existe...');    
+        }                
     }
 
     public function SelectNutritionItem($nutritionItem, $key)
@@ -179,6 +217,54 @@ class RecipeCreate extends Component
         $this->inStock = !$this->inStock;
     }
 
+    public function selectIngredient()
+    {
+        $validatedData = $this->validate([
+            'name' => 'required|min:6',
+            'recipe_category_id' => 'required',
+            'description' => 'required|min:6',
+            'prepTime' => 'required',
+            'cookTime' => 'required',
+            'recipeYield' => 'required',
+            'price' => 'required|numeric',
+            'cost' => 'required|numeric',
+            'inStock' => 'required',
+        ]);
+        $this->tabSelection = 1;
+    }
+
+    public function selectInfo()
+    {
+        $validatedData = $this->validate([
+            'name' => 'required|min:6',
+            'recipe_category_id' => 'required',
+            'description' => 'required|min:6',
+            'prepTime' => 'required',
+            'cookTime' => 'required',
+            'recipeYield' => 'required',
+            'price' => 'required|numeric',
+            'cost' => 'required|numeric',
+            'inStock' => 'required',
+        ]);
+        $this->tabSelection = 2;
+    }
+
+    public function selectImages()
+    {
+        $validatedData = $this->validate([
+            'name' => 'required|min:6',
+            'recipe_category_id' => 'required',
+            'description' => 'required|min:6',
+            'prepTime' => 'required',
+            'cookTime' => 'required',
+            'recipeYield' => 'required',
+            'price' => 'required|numeric',
+            'cost' => 'required|numeric',
+            'inStock' => 'required',
+        ]);
+        $this->tabSelection = 3;
+    }
+
     public function save()
     {
         $validatedData = $this->validate([
@@ -193,6 +279,11 @@ class RecipeCreate extends Component
             'inStock' => 'required',
         ]);
         
+        if( $this->price <= $this->cost){
+            $this->emit('error','El precio publico es erroneo');
+            return;
+        }
+
         $recipe = new Recipe();
         $recipe->name = $this->name;
         $recipe->slug = Str::slug($this->name, '-');
@@ -205,6 +296,7 @@ class RecipeCreate extends Component
         if($this->suitableForDiet){
             $recipe->suitableForDiet = $this->suitableForDiet;
         }
+        
         $recipe->price = $this->price;
         $recipe->cost = $this->cost;
         $recipe->costPriceRatio = ($this->cost*100)/$this->price;
@@ -222,7 +314,7 @@ class RecipeCreate extends Component
             ]);
 
             foreach ($this->photos as $photo) {
-                $url_foto = $photo->store('product-photos', 'public');
+                $url_foto = $photo->store('product-photosmy', 'public');
                 $path = str_replace("public","storage", $url_foto);
 
                 $image = RecipeImage::create([
@@ -230,6 +322,11 @@ class RecipeCreate extends Component
                     'image' => $path,
                 ]);
             }
+        }else{
+            $image = RecipeImage::create([
+                'recipe_id' => $recipe->id,
+                'image' => 'fotos/no_disponible.png',
+            ]);
         }
         
         if($this->ingredientList)
@@ -238,7 +335,7 @@ class RecipeCreate extends Component
                 $product = Product::where('name',$ingredient['product'])->first();
                 logger($product);
                 $unit = Unit::where('unit',$ingredient['unit'])->first();
-                $ingredientItem = RecipeIngredient::create([
+                $ingredientItem = ProductRecipe::create([
                     'recipe_id' => $recipe->id,
                     'product_id' => $product->id,
                     'qty' => $ingredient['qty'],
@@ -247,25 +344,56 @@ class RecipeCreate extends Component
             }
         }
         
-        if($this->nutritionList){
-            $nutritionInfo = new NutritionInformation();
-            $nutritionInfo->recipe_id = $recipe->id;
-            foreach($this->nutritionList as $key => $nutritionItem){
-                if($key == 'calories') { $nutritionInfo->calories =  $nutritionItem; }
-                if($key == 'carbohydrateContent') { $nutritionInfo->carbohydrateContent =  $nutritionItem; }
-                if($key == 'cholesterolContent') { $nutritionInfo->cholesterolContent =  $nutritionItem; }
-                if($key == 'fatContent') { $nutritionInfo->fatContent =  $nutritionItem; }
-                if($key == 'fiberContent') { $nutritionInfo->fiberContent =  $nutritionItem; }
-                if($key == 'proteinContent') { $nutritionInfo->proteinContent =  $nutritionItem; }
-                if($key == 'saturatedFatContent') { $nutritionInfo->saturatedFatContent =  $nutritionItem; }
-                if($key == 'servingSize') { $nutritionInfo->servingSize =  $nutritionItem; }
-                if($key == 'sodiumContent') { $nutritionInfo->sodiumContent =  $nutritionItem; }
-                if($key == 'sugarContent') { $nutritionInfo->sugarContent =  $nutritionItem; }
-                if($key == 'transFatContent') { $nutritionInfo->transFatContent =  $nutritionItem; }
-                if($key == 'unsaturatedFatContent') { $nutritionInfo->unsaturatedFatContent =  $nutritionItem; }
-            }
-            $nutritionInfo->save();
-        }
+        
+        $nutritionInfo = new NutritionInformation();
+        $nutritionInfo->recipe_id = $recipe->id;
+
+        if($this->calorias) { $nutritionInfo->calories =  $this->calories; }
+        if($this->carbohidratos) { $nutritionInfo->carbohydrateContent =  $this->carbohydrateContent; }
+        if($this->colesterol) { $nutritionInfo->cholesterolContent =  $this->cholesterolContent; }
+        if($this->grasas) { $nutritionInfo->fatContent =  $this->fatContent; }
+        if($this->fibra) { $nutritionInfo->fiberContent =  $this->fiberContent; }
+        if($this->proteina) { $nutritionInfo->proteinContent =  $this->proteinContent; }
+        if($this->grasas_saturadas) { $nutritionInfo->saturatedFatContent =  $this->saturatedFatContent; }
+        if($this->tam_porcion) { $nutritionInfo->servingSize =  $this->servingSize; }
+        if($this->sodio) { $nutritionInfo->sodiumContent =  $this->sodiumContent; }
+        if($this->azucar) { $nutritionInfo->sugarContent =  $this->sugarContent; }
+        if($this->grasas_trans) { $nutritionInfo->transFatContent =  $this->transFatContent; }
+        if($this->grasas_no_saturadas) { $nutritionInfo->unsaturatedFatContent =  $this->unsaturatedFatContent; }
+        
+        $nutritionInfo->save();
+        
         $this->emit('success', 'Se ha creado un nuevo producto');
+    }
+
+    private function AddToCost(Product $product)
+    {
+        $unit = $product->unit()->first()->unit;
+        $measure = 1;
+        $multiply = $measure * $product->content;
+        $cost_per_gr_ml=0;
+        if($unit == 'Kilogramo' || $unit == 'Litro'){
+            $measure = $multiply * 1000;
+            $cost_per_gr_ml = $product->price / $measure;            
+        }elseif($unit == 'Gramo' || $unit == 'Mililitro'){
+            $cost_per_gr_ml = $product->price / $multiply;
+        }
+        if($this->unitName == 'Kilogramo' || $this->unitName == 'Litro'){
+            $this->cost = $this->cost + ($cost_per_gr_ml * ($this->ingredientQty*1000));
+        }else{
+            $this->cost = $this->cost + ($cost_per_gr_ml * $this->ingredientQty);
+        }
+        /* $this->cost = $this->cost + ($cost_per_gr_ml * $this->ingredientQty); */
+    }
+
+    private function AddToServingSize()
+    {
+        $measure = 1;
+        $ingredientQty = $this->ingredientQty;
+
+        if($this->unitName == 'Kilogramo' || $this->unitName == 'Litro'){            
+            $ingredientQty = $this->ingredientQty * 1000;
+        }
+        $this->servingSize = $this->servingSize + $ingredientQty;
     }
 }
