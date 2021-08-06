@@ -12,6 +12,12 @@ Route::get('/admin', function () {
 ->middleware('is_admin','auth:sanctum')
 ->name('admin');
 
+Route::get('/promo/morning/edit', function () {
+    return view('promomorning');
+})
+->middleware('is_admin','auth:sanctum')
+->name('admin');
+
 
 /* Route::get('/admin', App\Http\Livewire\Admin\Dashboard::class)
 ->middleware('is_admin')
@@ -62,4 +68,3 @@ Route::prefix('admin')->group(function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('eat-welcome2');
 })->name('dashboard');
-
