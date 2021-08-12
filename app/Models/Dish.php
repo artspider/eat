@@ -36,4 +36,17 @@ class Dish extends Model
             ->withPivot('qty', 'unit_id')
             ->orderBy('name');
         }
+
+        function recipes()
+        {
+            return $this->belongsToMany('App\Models\Recipe', 'dish_recipe')
+            ->withTimestamps()
+            ->withPivot('qty')
+            ->orderBy('name');
+        }
+
+        public function orders()
+        {
+            return $this->belongsToMany('App\Models\Order');
+        }
 }

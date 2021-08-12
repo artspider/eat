@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\KitchenController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,6 +18,9 @@ Route::get('/admin', function () {
 /* Route::get('/admin', App\Http\Livewire\Admin\Dashboard::class)
 ->middleware('is_admin')
 ->name('admin-dashboard'); */
+Route::get('/orders', App\Http\Livewire\Orders::class)
+    ->middleware('auth:sanctum')
+    ->name('orders');
 
 Route::prefix('admin')->group(function () {
     
@@ -60,6 +64,9 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/dishes/create',App\Http\Livewire\Admin\DishCreate::class)
         ->name('admin-dishes-create');
+
+        Route::get('/kitchen', [KitchenController::class, 'index'])
+        ->name('admin-kitchen');
     });
 
     

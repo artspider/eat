@@ -151,15 +151,17 @@ class RecipeCreate extends Component
         $product = Product::where('name', $this->productName)->first();
         if($product)
         {
+            $cost = $this->AddToCost($product);
             array_push(
                 $this->ingredientList,array(
                     'qty' => $this->ingredientQty,
                     'unit' => $this->unitName,
-                    'product' => $this->productName
+                    'product' => $this->productName,
+                    'cost' => $cost
                 )
             );
 
-            $this->AddToCost($product);
+            
             $this->AddToServingSize();
             $this->ingredientQty = 1;
             $this->unitName = 'Unidad...';
@@ -368,6 +370,7 @@ class RecipeCreate extends Component
 
     private function AddToCost(Product $product)
     {
+        $productCost=0;
         $unit = $product->unit()->first()->unit;
         $measure = 1;
         $multiply = $measure * $product->content;
@@ -379,12 +382,16 @@ class RecipeCreate extends Component
             $cost_per_gr_ml = $product->price / $multiply;
         }
         if($this->unitName == 'Kilogramo' || $this->unitName == 'Litro'){
-            $this->cost = $this->cost + ($cost_per_gr_ml * ($this->ingredientQty*1000));
+            $productCost = $cost_per_gr_ml * ($this->ingredientQty*1000);
+            $this->cost = $this->cost + $productCost;
         }else{
-            $this->cost = $this->cost + ($cost_per_gr_ml * $this->ingredientQty);
+            $productCost = $cost_per_gr_ml * $this->ingredientQty;
+            $this->cost = $this->cost + $productCost;
         }
         /* $this->cost = $this->cost + ($cost_per_gr_ml * $this->ingredientQty); */
+        return $productCost;
     }
+
 
     private function AddToServingSize()
     {

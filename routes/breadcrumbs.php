@@ -2,7 +2,7 @@
 
 // Home
 Breadcrumbs::for('dashboard', function ($trail) {
-    $trail->push('Dashboard', route('admin'));
+    $trail->push('Dashboard', route('dashboard'));
 });
 
 Breadcrumbs::for('admin', function ($trail) {
@@ -68,4 +68,14 @@ Breadcrumbs::for('dishes', function ($trail) {
 Breadcrumbs::for('dishes-create', function ($trail) {
     $trail->parent('admin');
     $trail->push('Add Dish', route('admin-dishes-create'));    
+});
+
+Breadcrumbs::for('kitchen', function ($trail) {
+    $trail->parent('admin');
+    $trail->push('Kitchen', route('admin-kitchen'));    
+});
+
+Breadcrumbs::for('orders', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Orders', route('orders'));    
 });
