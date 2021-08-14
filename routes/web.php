@@ -18,6 +18,18 @@ Route::get('/promo/morning/edit', function () {
 ->middleware('is_admin','auth:sanctum')
 ->name('admin');
 
+Route::get('/promo/dinner/edit', function () {
+    return view('promodinner');
+})
+->middleware('is_admin','auth:sanctum')
+->name('admin');
+
+Route::get('/promo/dailypromo/edit', function () {
+    return view('dailypromo');
+})
+->middleware('is_admin','auth:sanctum')
+->name('admin');
+
 
 /* Route::get('/admin', App\Http\Livewire\Admin\Dashboard::class)
 ->middleware('is_admin')
