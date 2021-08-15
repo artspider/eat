@@ -61,6 +61,9 @@
         + para
         agregar</p>
       @endif
+      @error('queryCustomer')
+      <div class="text-sm font-montserrat font-light text-eat-fuccia-500">{{ $message }}</div>
+      @enderror
       <div x-show="open">
         <x-utils.text-input wire:model="street" class="mt-2" type="text" required="true"
           placeholder="Calle y Número..." />
@@ -69,7 +72,8 @@
           <x-utils.text-input wire:model="phone" class="ml-1" type="text" required="true" placeholder="Telefono..." />
         </div>
         <div class="flex items-center justify-end mt-2">
-          <x-utils.button wire:click="CancelSaveCustomer" class="h-10 mr-2" color="eat-fuccia">Cancelar</x-utils.button>
+          <x-utils.button wire:click="CancelSaveCustomer" class="h-10 mr-2 px-2" color="eat-fuccia">Cancelar
+          </x-utils.button>
           <x-utils.button wire:click="SaveCustomer" class="h-10" color="eat-olive">guardar</x-utils.button>
         </div>
       </div>
@@ -182,6 +186,11 @@
           </div>
           <p class="w-1/2">{{$dish['name']}}</p>
           <p class="w-1/5">${{$prices[$key]}}</p>
+          <a href="#" onclick="confirmAction('deleteDish', {{ $key }});" data-title='Elimina el platillo'
+            data-placement="top" class="tooltip_recipe text-eat-fuccia-500 hover:text-eat-fuccia-600 underline pl-2">
+            <x-icons.remove />
+          </a>
+
         </div>
         @empty
 
@@ -194,11 +203,8 @@
         <p class="w-1/2 bg-eat-green-100 text-left">${{$total}}MXN</p>
       </div>
 
-
-
       <button wire:click="ordenar" type="submit"
         class=" w-full h-8 text-center font-montserrat mt-4 bg-eat-olive-500 border border-transparent rounded-md font-semibold text-xs text-eat-white-500 uppercase tracking-wider hover:bg-eat-olive-400 active:bg-eat-olive-700 focus:outline-none focus:border-eat-olive-700 focus:ring ring-eat-olive-300 disabled:opacity-25 transition ease-in-out duration-150'">Ordenar</button>
-
 
     </div>
   </div>

@@ -21,6 +21,7 @@ class OrderCreate extends ModalComponent
     public $customer_id;
     public $queryDish = '';
     public $queryCustomer = '';
+    public $name;
     public $addCustomer = false;
     public $addDish = false;
     public $addAddressInput = false;
@@ -37,6 +38,15 @@ class OrderCreate extends ModalComponent
     public $waiter;
     public $delivery_time;
     public $buttonOrderEnabled = false;
+
+    protected $listeners = ['deleteDish' => 'removeDish'];
+
+    public function removeDish($key)
+    {
+        $this->total = $this->total - $this->prices[$key];
+        unset($this->prices[$key]);        
+        unset($this->dishList[$key]);
+    }
 
     public function mount()
     {
@@ -56,21 +66,23 @@ class OrderCreate extends ModalComponent
     public function updatedqueryCustomer()
     {
         $this->customers = Customer::where('name', 'like', '%' . $this->queryCustomer . '%')->get();
-        if(count($this->customers) === 0){
+        (count($this->customers) === 0) ? $this->addCustomer = true : $this->addCustomer = false;
+        /* if(count($this->customers) === 0){
             $this->addCustomer = true;
         }else{
             $this->addCustomer = false;
-        }        
+        }  */       
     }
 
     public function updatedqueryDish()
     {
         $this->dishes = Dish::where('name', 'like', '%' . $this->queryDish . '%')->get();
-        if(count($this->dishes) === 0){
+        (count($this->dishes) === 0) ? $this->addDish = true : $this->addDish = false;
+        /* if(count($this->dishes) === 0){
             $this->addDish = true;
         }else{
             $this->addDish = false;
-        }        
+        }         */
     }
 
     public function editCustomer()
@@ -99,45 +111,41 @@ class OrderCreate extends ModalComponent
         $this->addCustomer = false;
     }
 
-    public function SaveCustomer()
+    public function validateCustomerData()
     {
-        $validatedData = $this->validate([
-            'queryCustomer' => 'required|min:6',
+        $this->name = $this->queryCustomer;
+        return $this->validate([
+            'name' => 'required|min:6',
             'street' => 'required|min:6',
             'suburb' => 'nullable|min:5',
             'phone' => 'required|min:10',
         ]);
+    }
 
-        $customer = new Customer();
-        $customer->name = $this->queryCustomer;
-        $customer->street = $this->street;
-        $customer->suburb = $this->suburb;
-        $customer->phone = $this->phone;
-        $customer->save();
+    public function SaveCustomer()
+    {
+        $customer = Customer::create($this->validateCustomerData());
+        $this->setDataAfterSaveCustomer($customer);        
+        $this->emit('success','Cliente agregado...');
+    }
 
+    public function setDataAfterSaveCustomer(Customer $customer)
+    {
         $this->customers = Customer::where('name', 'like', '%' . $this->queryCustomer . '%')->get();
         $this->customer_id = $customer->id;
         $this->ordercustomer = $customer;
         $this->addAddressInput = false;
         $this->addCustomer = false;
-        $this->emit('success','Cliente agregado...');
+        return;
     }
 
     public function addDishToOrder(Dish $dish)
     {
+        if(! $this->dish_id) return $this->emit('error','Platillo no encontrado...');
+        
         $dish = Dish::find($this->dish_id);
         $this->total = 0;
-        if(!$dish){
-            $this->emit('error','Platillo no encontrado...');
-            return;
-        }
-
-        foreach ($this->dishList as $key => $item) {
-            if(in_array($dish->id, $item)){
-                $this->emit('error', 'El platillo ya esta en la orden');
-                return;
-            }    
-        }
+        if ($this->dishIsInOrder($dish->id)) return true;
         array_push(
             $this->dishList,array(
                 'id' => $dish->id,
@@ -147,9 +155,6 @@ class OrderCreate extends ModalComponent
             )
         );
 
-        logger($dish->id);
-        logger($this->dishList);
-
         $this->dish_id = null;
         $this->queryDish = '';
         $this->updatedqueryDish();
@@ -158,6 +163,16 @@ class OrderCreate extends ModalComponent
             $this->total = $this->total + $this->prices[$key];
         }
         $this->buttonOrderEnabled = true;
+    }
+
+    public function dishIsInOrder($dish_id)
+    {
+        foreach ($this->dishList as $key => $item) {
+            if(in_array($dish_id, $item)){
+                $this->emit('error', 'El platillo ya esta en la orden');
+                return true;
+            }    
+        }
     }
 
     public function changeQty()
@@ -191,6 +206,10 @@ class OrderCreate extends ModalComponent
             'deliveryGuy' => 'nullable|min:5',
             'waiter' => 'required'
         ]);
+
+        if(count($this->dishList) == 0){
+            return $this->emit('error','La orden no tien platillos...');
+        }
 
         $order = new Order();
         $order->customer_id = $this->customer_id;
