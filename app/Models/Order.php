@@ -21,7 +21,7 @@ class Order extends Model
 
     public function customer()
     {
-        return $this->hasOne('App\Models\Customer');
+        return $this->belongsTo('App\Models\Customer');
     }
 
     public function status()

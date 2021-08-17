@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('delivery_guy')->nullable();
             $table->string('table')->nullable();
             $table->text('note')->nullable();
-            $table->decimal('total',4,2);
+            $table->decimal('total',8,2);
             $table->timestamps();
         });
     }

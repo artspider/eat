@@ -126,7 +126,7 @@
 
       <!-- Quien entrega -->
       <div class="relative mb-4">
-        <x-utils.text-input wire:model="deliveryGuy" type="text" label="" :required="false" placeholder="" pl="pl-24"
+        <x-utils.text-input wire:model="delivery_guy" type="text" label="" :required="false" placeholder="" pl="pl-24"
           class="w-full mt-2 md:mt-4" />
         <p class="absolute top-2 left-3 text-gray-500 text-sm font-montserrat font-bold">Repartidor:</p>
       </div>

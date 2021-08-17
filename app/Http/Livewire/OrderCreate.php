@@ -31,9 +31,10 @@ class OrderCreate extends ModalComponent
     public $dishList=[];
     public $prices=[1,1,1];
     public $total = 0;
-    public $deliveryGuy;
+    public $delivery_guy;
     public $mesa = ["MESA 1","MESA 2","MESA 3","MESA 4","MESA 5",'A DOMICILIO','PARA LLEVAR'];
     public $selectedtable;
+    public $table;
     public $note;
     public $waiter;
     public $delivery_time;
@@ -139,13 +140,14 @@ class OrderCreate extends ModalComponent
         return;
     }
 
-    public function addDishToOrder(Dish $dish)
+    public function addDishToOrder()
     {
         if(! $this->dish_id) return $this->emit('error','Platillo no encontrado...');
         
-        $dish = Dish::find($this->dish_id);
-        $this->total = 0;
+        $dish = Dish::find($this->dish_id);        
         if ($this->dishIsInOrder($dish->id)) return true;
+
+        $this->total = 0;
         array_push(
             $this->dishList,array(
                 'id' => $dish->id,
@@ -158,21 +160,56 @@ class OrderCreate extends ModalComponent
         $this->dish_id = null;
         $this->queryDish = '';
         $this->updatedqueryDish();
-        foreach ($this->dishList as $key => $dish) {
+        $this->AddToTotal();
+        /* foreach ($this->dishList as $key => $dish) {
             $this->prices[$key] = $dish['qty']*$dish['price'];
             $this->total = $this->total + $this->prices[$key];
-        }
-        $this->buttonOrderEnabled = true;
+        } */
+        //$this->buttonOrderEnabled = true;
     }
 
     public function dishIsInOrder($dish_id)
     {
-        foreach ($this->dishList as $key => $item) {
-            if(in_array($dish_id, $item)){
+        foreach ($this->dishList as $key => $item) {            
+            if($dish_id == $item['id']){
                 $this->emit('error', 'El platillo ya esta en la orden');
                 return true;
-            }    
+            }
         }
+    }
+
+    public function hasStock(Dish $dish, $qty = 1)
+    {
+        if (! $this->hasProduct($dish->products, $qty)) return false;
+        $this->hasInKitchen($dish->recipes);
+
+        return true;
+    }
+
+    public function hasProduct($products, $qty = 1)
+    {
+        $base_unit = 1000; //gramo
+        $product_qtyleft = 0;
+        foreach ($products as $key => $product) {
+            if ($product->unit_id == $product->pivot->unit_id) {
+                $product_qty = $product->content * $product->stock;
+                $product_qtyleft = $product_qty - ($product->pivot->qty * $qty);
+            }else{
+                $product_qty = ($product->content * $base_unit) * $product->stock;
+                $product_qtyleft = $product_qty - ($product->pivot->qty * $qty);
+            }
+            if($product_qtyleft < 0) return false;
+        }
+
+        return true;
+    }
+
+    public function hasInKitchen($recipes)
+    {
+        foreach ($recipes as $key => $recipe) {
+            logger($recipe);
+        }
+        return true;
     }
 
     public function changeQty()
@@ -180,73 +217,94 @@ class OrderCreate extends ModalComponent
         logger($this->dishList[0]);
     }
 
-    public function AddToTotal($price)
-    {
-        $this->total = $this->total + $price;
+    public function AddToTotal()
+    {        
+        foreach ($this->dishList as $key => $dish) {
+            $this->prices[$key] = $dish['qty']*$dish['price'];
+            $this->total = $this->total + $this->prices[$key];
+        }
     }
 
     public function updated($name, $value)
     {
+        $arrayName = explode(".", $name);
+        if($arrayName[0] == "selectedtable") return;
         $this->total = 0;
         if($value){
-            foreach ($this->dishList as $key => $dish) {
+            $this->AddToTotal();
+            /* foreach ($this->dishList as $key => $dish) {
                 $this->prices[$key] = $dish['qty']*$dish['price'];
                 $this->total = $this->total + $this->prices[$key];
-            }
+            } */
         }
+    }
+
+    public function validateOrderData()
+    {
+        $this->table = $this->mesa[$this->selectedtable];
+        return $this->validate([
+            'customer_id' => 'required',
+            'delivery_time' => 'nullable',
+            'waiter' => 'required',
+            'delivery_guy' => 'nullable|min:5',
+            'table' => 'required',
+            'note' => 'nullable|min:10',
+            'total' => 'required',
+        ]);
     }
 
     public function ordenar()
     {        
-        $validatedData = $this->validate([
-            'customer_id' => 'required',
-            'selectedtable' => 'required',
-            'note' => 'nullable|min:10',
-            'total' => 'required',
-            'deliveryGuy' => 'nullable|min:5',
-            'waiter' => 'required'
-        ]);
-
         if(count($this->dishList) == 0){
             return $this->emit('error','La orden no tien platillos...');
         }
 
-        $order = new Order();
+        $order = Order::create($this->validateOrderData());
+        /* $order = new Order();
         $order->customer_id = $this->customer_id;
-        $order->delivery_time = 20;
+        $order->delivery_time = $this->delivery_time;
         $order->waiter = $this->waiter;
-        $order->delivery_guy = $this->deliveryGuy;
+        $order->delivery_guy = $this->delivery_guy;
         $order->table = $this->selectedtable;
         $order->note = $this->note;
         $order->total = $this->total;
         
-        $order->save();
-        
+        $order->save(); */
+        $this->orderDetails($order->id);
+        $this->orderStatus($order->id);        
+
+        $this->emit('success', 'orden creada...');
+        $this->closeModal();
+    }
+
+    public function orderDetails($order_id)
+    {
         foreach($this->dishList as $dish) {
             $DishOrderItem = DishOrder::create([
                 'dish_id' => $dish['id'],
-                'order_id' => $order->id,
+                'order_id' => $order_id,
                 'qty' => $dish['qty'],
                 'price' => $dish['price'],
                 'total' => ($dish['price'] * $dish['qty'])
             ]);
             $this->updateDishStock($dish['id']);
         }
+    }
 
+    public function orderStatus($order_id)
+    {
         $status = new OrderStatus();
-        $status->order_id = $order->id;
+        $status->order_id = $order_id;
         $status->status = 'PENDING';
         $status->done = false;
         $status->save();
-
-        $this->emit('success', 'orden creada...');
     }
 
     public function updateDishStock($dish_id)
     {
         $dish = Dish::find($dish_id);
         $this->subFromProduct($dish->products);
-        $this->subFromKitchen($dish->recipes);        
+        $this->subFromKitchen($dish->recipes);
     }
 
     public function subFromProduct($products)

@@ -26,7 +26,7 @@
     </div>
     @if ($orders && $orders->count())
     @php
-    $headers = array("Hora", "Cliente", "Dirección", "Total", "Status");
+    $headers = array("Hora", "Cliente", "Mesa", "Total", "Status");
     @endphp
 
     <table class="border-collapse w-full">
@@ -40,6 +40,47 @@
           @endforeach
         </tr>
       </thead>
+      <tbody>
+        @forelse ($orders as $order)
+        <tr
+          class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+          <td
+            class="w-full lg:w-auto p-3 text-gray-800 border border-b lg:table-cell relative lg:static h-24 flex items-center justify-center md:h-auto">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-montserrat uppercase">
+              Hora:
+            </span>
+            <div class="ml-4 text-sm font-montserrat">
+              <div class="">{{$order->created_at->format('H:i')}}</div>
+            </div>
+          </td>
+          <td
+            class="w-full lg:w-auto p-3 text-gray-800 border border-b lg:table-cell relative lg:static h-24 flex items-center justify-center md:h-auto">
+            <span
+              class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Cliente</span>
+            <p class="text-sm font-montserrat text-center">{{$order->customer->name}}</p>
+          </td>
+          <td
+            class="w-full lg:w-auto p-3 text-gray-800 border border-b lg:table-cell relative lg:static h-24 flex items-center justify-center md:h-auto">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Mesa</span>
+            <p class="text-sm font-montserrat text-center">{{$order->table}}</p>
+          </td>
+          <td
+            class="w-full lg:w-auto p-3 text-gray-800 border border-b lg:table-cell relative lg:static h-24 flex items-center justify-center md:h-auto">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Total</span>
+            <p class="text-sm font-montserrat text-center">${{$order->total}}MXN</p>
+          </td>
+          <td
+            class="w-full lg:w-auto p-3 text-gray-800 border border-b lg:table-cell relative lg:static h-24 flex items-center justify-center md:h-auto">
+            <span
+              class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
+            <p class="text-sm font-montserrat text-center">{{$order->status->last()->status}}</p>
+          </td>
+        </tr>
+        @empty
+
+        @endforelse
+
+      </tbody>
     </table>
 
     @else
