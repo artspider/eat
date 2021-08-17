@@ -3,6 +3,7 @@
 'label' => "",
 'required' => false,
 'placeholder' => "",
+'pr' => "pr-10",
 'pl' => "pl-4",
 'disabled' => false,
 ])
@@ -13,12 +14,15 @@
     <div class=" relative rounded-md shadow-md">
         <input {{$attributes->whereStartsWith('wire:model')}}
             name={{$attributes->whereStartsWith('wire:model')->first()}}
-            id="{{$attributes->whereStartsWith('wire:model')->first()}}" type="{{$type}}" @if ($required) required
-            @endif @if ($disabled) disabled @endif @error($attributes->whereStartsWith('wire:model')->first())
-        class="form-input block w-full {{$pl}} pr-10 border-eat-fuccia-300 text-eat-fuccia-900
-        placeholder-eat-fuccia-300 focus:border-eat-fuccia-100 focus:shadow-outline-red sm:text-sm sm:leading-5"
+            id="{{$attributes->whereStartsWith('wire:model')->first()}}" type="{{$type}}" @if($required) required @endif
+            @if ($disabled) disabled @endif @error($attributes->whereStartsWith('wire:model')->first())
+        class="form-input block w-full {{$pl}} {{$pr}} border-eat-fuccia-300 text-eat-fuccia-900
+        placeholder-eat-fuccia-300 focus:border-eat-fuccia-100 focus:shadow-outline-red sm:text-sm sm:leading-5
+        bg-eat-white-500 font-bold"
         @else
-        class="form-input block w-full {{$pl}} pr-10 text-eat-olive-900 font-montserrat placeholder-eat-olive-50 border
+        class="form-input block w-full {{$pl}} {{$pr}} text-eat-olive-900 font-montserrat placeholder-eat-olive-50
+        bg-eat-white-500 font-bold
+        border
         border-transparent focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent sm:text-sm
         sm:leading-5"
         @endif
@@ -27,6 +31,8 @@
         aria-invalid="true"
         aria-describedby=""
         @enderror
+        autocomplete="off"
+
         >
 
         @error($attributes->whereStartsWith('wire:model')->first())

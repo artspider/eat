@@ -16,8 +16,10 @@ class CreateKitchensTable extends Migration
         Schema::create('kitchens', function (Blueprint $table) {
             $table->id();
             $table->foreignId('recipe_id')->constrained()->onDelete('cascade');
+            $table->mediumInteger('qty');
             $table->mediumInteger('qtyleft');
-            $table->mediumInteger('waste');
+            $table->mediumInteger('waste')->nullable();
+            $table->mediumInteger('status')->nullable();
             $table->timestamps();
         });
     }

@@ -276,10 +276,21 @@ class DishCreate extends Component
                 $recipeItem = DishRecipe::create([
                     'dish_id' => $dish->id,
                     'recipe_id' => $recipeM->id,
-                    'qty' => $recipe['recipeQty'],
+                    'qty' => $recipe['qty'],
                 ]);
             }
         }
+
+        $this->photos = [];
+        $this->name = '';
+        $this->description = '';
+        $this->servTime=0;
+        $this->dishYield = 0;
+        $this->dishCuisine = '';
+        $this->price=0;
+        $this->cost=0;
+        $this->ingredientList=[];
+        $this->recipeList=[];
         $this->emit('success', 'Se ha creado un nuevo producto');
     }
 

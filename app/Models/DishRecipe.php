@@ -9,6 +9,8 @@ class DishRecipe extends Model
 {
     use HasFactory;
 
+    protected $table = 'dish_recipe';
+
     protected $fillable = [
         'dish_id',
         'recipe_id',

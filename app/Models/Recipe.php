@@ -50,4 +50,10 @@ class Recipe extends Model
         return $this->hasOne('App\Models\NutritionInformation');
     }
 
+    function kitchen()
+    {
+        return $this->hasOne('App\Models\Kitchen');
+    }
+    
+
 }

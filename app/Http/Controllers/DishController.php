@@ -25,4 +25,15 @@ class DishController extends Controller
         ]); */
         return request()->all();
     }
+
+    /**
+        * Remove the specified resource from storage.
+        *
+        * @param  int  $id
+        * @return Response
+        */
+        public function destroy($id)
+        {
+            dd('destroy');
+        }
 }

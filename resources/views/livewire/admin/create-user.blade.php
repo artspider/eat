@@ -62,6 +62,7 @@
         <option value="manager">Manager</option>
         <option value="chef">Chef</option>
         <option value="waiter" selected>Mesero</option>
+        <option value="kitchen assistant" selected>Asistente de cocina</option>
       </select>
       @error('role') <span class="text-eat-fuccia-500 text-xs font-montserrat">{{ $message }}</span> @enderror
 
