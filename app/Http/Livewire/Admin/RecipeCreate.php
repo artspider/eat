@@ -380,7 +380,10 @@ class RecipeCreate extends Component
             $cost_per_gr_ml = $product->price / $measure;            
         }elseif($unit == 'Gramo' || $unit == 'Mililitro'){
             $cost_per_gr_ml = $product->price / $multiply;
+        }elseif($unit == 'Pieza'){
+            $cost_per_gr_ml = $product->price * 1;
         }
+        
         if($this->unitName == 'Kilogramo' || $this->unitName == 'Litro'){
             $productCost = $cost_per_gr_ml * ($this->ingredientQty*1000);
             $this->cost = $this->cost + $productCost;

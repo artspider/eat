@@ -55,6 +55,38 @@
                           border border-transparent  focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent" name="description" id="description" cols="30" rows="5"></textarea>
             </div>
 
+            <div class="mb-8">
+              <label for="menu" class="block text-sm font-medium leading-5 text-eat-olive-700">Del Menú</label>
+              <select wire:model="selectedMenu" class=" w-full rounded-md shadow-md form-input block text-eat-olive-900 font-montserrat placeholder-eat-olive-50
+              bg-eat-white-500 font-bold
+              border
+              border-transparent focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent sm:text-sm
+              sm:leading-5">
+                <option value="">== MENÚ ==</option>
+                @foreach ($menus as $key => $menu)
+                <option value="{{$key}}">{{$menu}}</option>
+                @endforeach
+              </select>
+            </div>
+
+            @if ($section)
+            <div class="mb-8">
+              <label for="menu" class="block text-sm font-medium leading-5 text-eat-olive-700">Sección</label>
+              <select wire:model="selectedSection" class=" w-full rounded-md shadow-md form-input block text-eat-olive-900 font-montserrat placeholder-eat-olive-50
+              bg-eat-white-500 font-bold
+              border
+              border-transparent focus:outline-none focus:ring-2 focus:ring-eat-olive-600 focus:border-transparent sm:text-sm
+              sm:leading-5">
+                <option value="">== SECCIÓN ==</option>
+                @foreach ($section as $key => $item)
+                <option value="{{$key}}">{{$item}}</option>
+                @endforeach
+              </select>
+            </div>
+            @endif
+
+
+
             <div class="flex items-center mb-8">
               <div class="flex items-center relative w-1/3">
                 <x-utils.text-input wire:model="servTime" type="number" label="Tiempo en el que se sirve"

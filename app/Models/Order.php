@@ -36,4 +36,9 @@ class Order extends Model
         ->withPivot('qty', 'price', 'total')
         ->orderBy('name');
     }
+
+    public function payments()
+    {
+        return $this->hasMany('App\Models\Payment');
+    }
 }

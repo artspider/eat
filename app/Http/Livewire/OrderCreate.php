@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 Use App\Models\Customer;
 Use App\Models\Order;
 Use App\Models\Dish;
+Use App\Models\Product;
+Use App\Models\Recipe;
 Use App\Models\Kitchen;
 use App\Models\DishOrder;
 use App\Models\OrderStatus;
@@ -16,7 +18,7 @@ class OrderCreate extends ModalComponent
 {
     public $customers;
     public $ordercustomer;
-    public $dishes;
+    public $dishes=null;
     public $dish_id;
     public $customer_id;
     public $queryDish = '';
@@ -40,7 +42,30 @@ class OrderCreate extends ModalComponent
     public $delivery_time;
     public $buttonOrderEnabled = false;
 
+    public $menus = ['DESAYUNO', 'COMIDA', 'BEBIDAS'];
+    public $breakfast = ['HUEVOS', 'DULCE', 'QUESADILLA', 'ESPECIALIDADES'];
+    public $lunch = ['ENSALADAS', 'TORTAS', 'PIZZA', 'ESPECIALIDADES'];
+    public $beberages = ['SMOOTHIES', 'JUGOS', 'DRINKS', 'BASICOS'];
+    public $selectedMenu = null;
+    public $selectedSection = null;
+    public $section;
+
     protected $listeners = ['deleteDish' => 'removeDish'];
+
+    public static function modalMaxWidth(): string
+    {
+        // 'sm'
+        // 'md'
+        // 'lg'
+        // 'xl'
+        // '2xl'
+        // '3xl'
+        // '4xl'
+        return '5xl';
+        // '6xl'
+        // '7xl'
+        //return '4xl';
+    }
 
     public function removeDish($key)
     {
@@ -53,11 +78,12 @@ class OrderCreate extends ModalComponent
     {
         $this->waiter = Auth::user()->name;
         $this->customers = Customer::where('name', 'like', '%' . $this->queryCustomer . '%')->get();
-        $this->dishes = Dish::where('name', 'like', '%' . $this->queryDish . '%')->get();
+        //$this->dishes = Dish::where('name', 'like', '%' . $this->queryDish . '%')->get();
     }
 
     public function render()
     {
+        
         return view('livewire.order-create',[
             'customers' => $this->customers,
             'dishes' => $this->dishes
@@ -75,9 +101,27 @@ class OrderCreate extends ModalComponent
         }  */       
     }
 
+    public function updatedselectedMenu($key)
+    {
+        if($key == 0) $this->section = $this->breakfast;
+        if($key == 1) $this->section = $this->lunch;
+        if($key == 2) $this->section = $this->beberages;
+
+        $this->dishes = null;
+        $this->selectedSection = 0;
+        
+        $this->dishes = Dish::where('section', $this->section[0] )->get();
+    }
+
+    public function updatedselectedSection($key)
+    {
+        $this->dishes = Dish::where('section', $this->section[$key] )->get();
+    }
+
     public function updatedqueryDish()
     {
-        $this->dishes = Dish::where('name', 'like', '%' . $this->queryDish . '%')->get();
+        $this->dishes = Dish::where('section', $this->section[$this->selectedSection] )->get();
+        //$this->dishes = Dish::where('name', 'like', '%' . $this->queryDish . '%')->get();
         (count($this->dishes) === 0) ? $this->addDish = true : $this->addDish = false;
         /* if(count($this->dishes) === 0){
             $this->addDish = true;
@@ -140,12 +184,73 @@ class OrderCreate extends ModalComponent
         return;
     }
 
+    public function checkProductStock(Product $product, $qty)
+    {
+        $qty_selected = $qty;
+        $product_qty = 0;
+        $product_qtyleft = 0;
+        $base_unit = 1000;
+        if ($product->unit_id == $product->pivot->unit_id) {
+            $product_qty = $product->content * $product->stock;
+            $product_qtyleft = $product_qty - ($product->pivot->qty * $qty_selected);
+        }else{
+            $product_qty = ($product->content * $base_unit) * $product->stock;
+            $product_qtyleft = $product_qty - ($product->pivot->qty * $qty_selected);
+        }
+        logger($product->name);
+        logger($product_qtyleft);
+        if($product_qtyleft < 0) return false;
+        return true;
+    }
+
+    public function checkKitchenStock(Recipe $recipe, $qty)
+    {
+        try{
+            $kitchen = $recipe->kitchen;
+        }catch(Exception $e){
+            return false;
+        }
+        If(empty($kitchen)) { return false; }
+        $stock = $kitchen->qtyleft - ($recipe->pivot->qty * $qty);
+        if($stock < 0) return false;
+        return true;
+    }
+
+    public function checkOutStock(Dish $dish, $qty)
+    {
+        $product_qty = $qty;
+        $products = $dish->products;
+        if($products){
+            foreach ($products as $key => $product) {
+                if(!$this->checkProductStock($product, $product_qty)) {
+                    $this->emit('error', $product->name . ' No tiene stock suficiente');
+                    return true;
+                }
+            }
+        }
+
+        $recipes = $dish->recipes;
+        if($recipes){
+            foreach ($recipes as $key => $recipe) {
+                if (!$this->checkKitchenStock($recipe,$product_qty)) { 
+                    $this->emit('error', $recipe->name . ' No tiene stock suficiente');
+                    return true; 
+                }
+            }
+        }
+
+        return false;
+    }
+
     public function addDishToOrder()
     {
         if(! $this->dish_id) return $this->emit('error','Platillo no encontrado...');
         
-        $dish = Dish::find($this->dish_id);        
+        $dish = Dish::find($this->dish_id);
         if ($this->dishIsInOrder($dish->id)) return true;
+        if ($this->checkOutStock($dish, 1)) {
+            return true;
+        }
 
         $this->total = 0;
         array_push(
@@ -207,14 +312,14 @@ class OrderCreate extends ModalComponent
     public function hasInKitchen($recipes)
     {
         foreach ($recipes as $key => $recipe) {
-            logger($recipe);
+            
         }
         return true;
     }
 
     public function changeQty()
     {
-        logger($this->dishList[0]);
+        
     }
 
     public function AddToTotal()
@@ -227,8 +332,18 @@ class OrderCreate extends ModalComponent
 
     public function updated($name, $value)
     {
+        
         $arrayName = explode(".", $name);
         if($arrayName[0] == "selectedtable") return;
+        if($arrayName[0] == "selectedMenu") return;
+        if($arrayName[0] == "selectedSection") return;
+        
+        $dish = Dish::find($this->dishList[$arrayName[1]]['id']);
+        
+        if ($this->checkOutStock($dish, $this->dishList[$arrayName[1]]['qty'])) {
+            $this->dishList[$arrayName[1]]['qty'] = $this->dishList[$arrayName[1]]['qty'] - 1;
+            return true;
+        }
         $this->total = 0;
         if($value){
             $this->AddToTotal();
@@ -258,6 +373,11 @@ class OrderCreate extends ModalComponent
         if(count($this->dishList) == 0){
             return $this->emit('error','La orden no tien platillos...');
         }
+
+        if(empty($this->selectedtable))
+        {
+            return $this->emit('error','Selecciona una mesa...');
+        }        
 
         $order = Order::create($this->validateOrderData());
         /* $order = new Order();

@@ -14,6 +14,7 @@ class Orders extends Component
     protected $queryString = ['search' => ['except' => '']];
 
     protected $listeners = [
+        'newOrder' => '$refresh',
         'deleteOrder' => 'remove'
     ];
 

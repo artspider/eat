@@ -33,8 +33,7 @@ class DishCreate extends Component
     public $unit_id;
     public $product_id;
     public $recipe_id;
-    public $recipeUnit_id;
-    
+    public $recipeUnit_id;    
 
     public $units;
     public $unitName="Unidad...";
@@ -52,6 +51,14 @@ class DishCreate extends Component
     public $queryProduct;
     public $queryRecipe;
     public $tabSelection=0;
+
+    public $menus = ['DESAYUNO', 'COMIDA', 'BEBIDAS'];
+    public $breakfast = ['HUEVOS', 'DULCE', 'QUESADILLA', 'ESPECIALIDADES'];
+    public $lunch = ['ENSALADAS', 'TORTAS', 'PIZZA', 'ESPECIALIDADES'];
+    public $beberages = ['SMOOTHIES', 'JUGOS', 'DRINKS', 'BASICOS'];
+    public $selectedMenu = null;
+    public $selectedSection = null;
+    public $section;
 
     public function mount()
     {
@@ -197,6 +204,13 @@ class DishCreate extends Component
         $this->tabSelection = 2;
     }
 
+    public function updatedselectedMenu($key)
+    {
+        if($key == 0) $this->section = $this->breakfast;
+        if($key == 1) $this->section = $this->lunch;
+        if($key == 2) $this->section = $this->beberages;
+    }
+
     public function save()
     {
         $validatedData = $this->validate([
@@ -228,6 +242,8 @@ class DishCreate extends Component
         $dish->profitableness = ($dish->price - $calcAnt);
         $dish->rating = 5;
         $dish->inStock = $this->inStock;
+        $dish->menu = $this->menus[$this->selectedMenu];
+        $dish->section = $this->section[$this->selectedSection];
         $dish->save();
 
         if($this->photos)
