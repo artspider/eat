@@ -73,7 +73,7 @@
             class="w-full lg:w-auto p-3 text-gray-800 border border-b lg:table-cell relative lg:static h-24 flex items-center justify-center md:h-auto">
             <span
               class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
-            <p class="text-sm font-montserrat text-center">{{$order->status->last()->status}}</p>
+            <p class="text-sm font-montserrat text-center">{{$order->status->first()->status}}</p>
           </td>
         </tr>
         @empty

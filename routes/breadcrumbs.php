@@ -70,6 +70,12 @@ Breadcrumbs::for('dishes-create', function ($trail) {
     $trail->push('Add Dish', route('admin-dishes-create'));    
 });
 
+Breadcrumbs::for('dishes-edit', function ($trail,$slug) {
+    
+    $trail->parent('admin');
+    $trail->push('Edit Product: '.$slug, route('admin-products-edit', $slug));
+});
+
 Breadcrumbs::for('kitchen', function ($trail) {
     $trail->parent('admin');
     $trail->push('Kitchen', route('admin-kitchen'));    
@@ -78,4 +84,9 @@ Breadcrumbs::for('kitchen', function ($trail) {
 Breadcrumbs::for('orders', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Orders', route('orders'));    
+});
+
+Breadcrumbs::for('cashregister', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('CashRegister', route('cashregister'));    
 });

@@ -25,6 +25,7 @@ class Recipe extends Model
     'profitableness',
     'deliveryCharges',
     'inStock',
+    'unit_id',
     ];
 
     function recipeImages()
@@ -43,6 +44,11 @@ class Recipe extends Model
         ->withTimestamps()
         ->withPivot('qty', 'unit_id')
         ->orderBy('name');
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo('App\Models\Unit');
     }
 
     function nutrition()

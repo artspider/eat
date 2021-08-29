@@ -40,11 +40,15 @@ Route::get('/orders', App\Http\Livewire\Orders::class)
     ->middleware('auth:sanctum')
     ->name('orders');
 
+Route::get('/cashregister', App\Http\Livewire\Cashregister::class)
+    ->middleware('auth:sanctum')
+    ->name('cashregister');
+
 Route::prefix('admin')->group(function () {
     
     Route::get('/users', App\Http\Livewire\Admin\Users::class)
     ->middleware('is_admin','auth:sanctum')
-    ->name('admin-users');    
+    ->name('admin-users');
 
     Route::group(['middleware' => ['role:superadmin|ceo|manager|chef','auth:sanctum']], function () {
         Route::get('/suppliers', App\Http\Livewire\Admin\Suppliers::class)
@@ -82,6 +86,9 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/dishes/create',App\Http\Livewire\Admin\DishCreate::class)
         ->name('admin-dishes-create');
+
+        Route::get('/dishes/edit/{dish:slug}',App\Http\Livewire\Admin\DishEdit::class)
+        ->name('admin-dishes-edit');
 
         Route::get('/kitchen', [KitchenController::class, 'index'])
         ->name('admin-kitchen');

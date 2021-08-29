@@ -264,3 +264,7 @@
     opacity: 1;
   }
 }
+
+input[type='checkbox']:focus {
+  outline: 0;
+}
