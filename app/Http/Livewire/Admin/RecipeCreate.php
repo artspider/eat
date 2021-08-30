@@ -306,6 +306,7 @@ class RecipeCreate extends Component
         $calcAnt= ($recipe->mc + $recipe->cost)*1.16;
         $recipe->profitableness = ($recipe->price - $calcAnt);
         $recipe->inStock = $this->inStock;
+        $recipe->unit_id = 3;
 
         $recipe->save();
 
