@@ -124,7 +124,7 @@
                                 <p class=" absolute top-8 left-16 text-eat-olive-600 text-sm">Persona(s)</p>
                             </div>
 
-                            <div class="w-full md:w-3/5 md:mr-4">
+                            <div class="w-full md:w-1/2 md:mr-4">
                                 <div x-data="{open: false}">
                                     <label for="recipeSuitableForDiet"
                                         class="block text-sm font-medium leading-5 text-eat-olive-700">Dieta</label>
@@ -445,7 +445,7 @@
                 </div>
 
                 <div x-show="tab===3" class="block lg:grid grid-cols-1 gap-4 place-items-center">
-                    <div class="col-span-1 w-2/3 my-8 mx-auto">
+                    <div class="col-span-1 w-full md:w-2/3 my-8 mx-auto">
                         <div class=" text-eat-olive-500 mt-4 px-4">
                             <label class="flex items-center cursor-pointer mt-8 mb-4" for="photos">
                                 <x-icons.avatar class="pr-3 " />
