@@ -7,7 +7,7 @@
 
     <div class="md:flex w-full">
       <div class="w-full md:w-1/3 relative">
-        <x-utils.text-input wire:model="search" type="text" label="" :required="true" placeholder="Buscar item"
+        <x-utils.text-input wire:model="search" type="text" label="" :required="true" placeholder="Número de orden"
           class="mb-4 rounded-md" />
         <div class="absolute top-0 right-12 cursor-pointer">
           <x-icons.search class=" " />
@@ -17,16 +17,16 @@
         <x-utils.button wire:click="clear" class="h-10 md:ml-4 shadow-md w-full md:w-1/3 mb-6 md:mb-0 justify-center"
           color="eat-olive">Limpiar</x-utils.button>
       </div>
-      <div class="w-full flex justify-end  md:w-1/3">
-        <div onclick="Livewire.emit('openModal', 'order-create')"
-          class="rounded-lg shadow-md text-eat-olive-500 hover:text-eat-olive-800 bg-eat-green-500 hover:bg-eat-green-300 w-10 h-10 pl-2 pt-2 cursor-pointer">
+      <div class=" w-full flex justify-end  md:w-1/3">
+        <div data-tippy-content="Ordenar" data-placement="left" onclick="Livewire.emit('openModal', 'order-create')"
+          class="tooltip_order rounded-lg shadow-md text-eat-olive-500 hover:text-eat-olive-800 bg-eat-green-500 hover:bg-eat-green-300 w-10 h-10 pl-2 pt-2 cursor-pointer">
           <x-icons.bell class=" " />
         </div>
       </div>
     </div>
     @if ($orders && $orders->count())
     @php
-    $headers = array("Hora", "Cliente", "Mesa", "Total", "Status");
+    $headers = array("ID", "Hora", "Cliente", "Mesa", "Total", "Status");
     @endphp
 
     <table class="border-collapse w-full">
@@ -44,6 +44,15 @@
         @forelse ($orders as $order)
         <tr
           class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
+          <td
+            class="w-full lg:w-auto p-3 text-gray-800 border border-b lg:table-cell relative lg:static h-24 flex items-center justify-center md:h-auto">
+            <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-montserrat uppercase">
+              ID:
+            </span>
+            <div class="ml-4 text-sm font-montserrat">
+              <div class="">{{$order->id}}</div>
+            </div>
+          </td>
           <td
             class="w-full lg:w-auto p-3 text-gray-800 border border-b lg:table-cell relative lg:static h-24 flex items-center justify-center md:h-auto">
             <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-montserrat uppercase">
@@ -117,7 +126,7 @@ Livewire.on('error', message => {
 </script>
 <script>
   tippy(
-		'.tooltip_recipe', {
+		'.tooltip_order', {
     content:(reference)=>reference.getAttribute('data-title'),
     onMount(instance) {
         instance.popperInstance.setOptions({

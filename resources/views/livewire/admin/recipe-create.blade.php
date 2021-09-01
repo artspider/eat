@@ -459,7 +459,7 @@
 
         <hr class=" border-eat-olive-50 mb-6 ">
         <div class="mt-6 flex justify-end">
-          <x-utils.button color="eat-olive" type="submit">Guardar</x-utils.button>
+          <x-utils.button color="eat-olive" type="submit" class="p-4">Guardar</x-utils.button>
         </div>
       </form>
     </div>
