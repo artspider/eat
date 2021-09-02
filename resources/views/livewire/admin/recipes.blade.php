@@ -100,13 +100,13 @@
     {{$recipes->links()}}
     @else
     <x-icons.no-recipes />
-    <x-utils.text class="text-center mb-6">¡Al parecer no hay recetas! Puedes agregar haciendo clic en el botón AGREGAR
+    <x-utils.text class="text-center mb-6 ">¡Al parecer no hay recetas! Puedes agregar haciendo clic en el botón AGREGAR
       que esta abajo</x-utils.text>
     <hr class=" border-eat-olive-50 mb-6 ">
     @endif
 
     <div class="flex justify-end mt-4">
-      <x-utils.button id="createRecipe" color="eat-olive" onclick="location.href='/admin/recipes/create'">
+      <x-utils.button class="p-4" id="createRecipe" color="eat-olive" onclick="location.href='/admin/recipes/create'">
         Agregar
       </x-utils.button>
     </div>
