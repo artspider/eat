@@ -127,12 +127,12 @@
 
     @endphp
     <nav
-        class="absolute inset-0 transform lg:transform-none lg:opacity-100 duration-200 lg:relative z-10 w-full md:w-80 bg-eat-fuccia-500 text-white max-h-screen overflow-y-auto p-3">
+        class="fixed top-0 left-0 inset-0 transform lg:transform-none lg:opacity-100 duration-200 lg:sticky lg:bottom-0 lg:left-0 z-10 w-full md:w-80 bg-eat-fuccia-500 text-white max-h-screen overflow-y-auto p-3" :class="{'translate-x-0 ease-in opacity-100':open === true, '-translate-x-full ease-out opacity-0': open === false}">
         <div class="flex justify-between">
             <div class="flex justify-center w-full">
                 <img src="{{url('/img/logo_fuccia.png')}}" class="h-20" alt="">
             </div>
-            <button class="p-2 focus:outline-none focus:bg-indigo-800 hover:bg-indigo-800 rounded-md lg:hidden"
+            <button class="p-2 focus:outline-none focus:bg-eat-fuccia-700 hover:bg-eat-fuccia-700 rounded-md lg:hidden"
                 @click="open = false">
                 <x-icons.close></x-icons.close>
             </button>
@@ -161,7 +161,7 @@
         <header
             class="flex bg-eat-green-500 text-white items-center px-3 text-2xl sm:text-3xl font-bold p-4 justify-end">
             <button class="p-2 focus:outline-none focus:bg-eat-green-500 hover:bg-eat-green-600 rounded-md lg:hidden"
-                @click="open = true">
+                @click="open = !open">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />

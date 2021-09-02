@@ -36,16 +36,18 @@
               </div>
             </div>
           </div>
-        </div>
+        </div><!-- 1 -->
 
-        <div>
-          {{$qty}} Gramos
-        </div>
-        {{-- <x-icons.add class="text-eat-olive-500 cursor-pointer ml-2" /> --}}
-        <div wire:click.debounce.150ms="addRecipe()" class="text-center flex flex-col items-center bg-eat-green-500 text-eat-olive-500 rounded-md p-2 cursor-pointer
-                      hover:bg-eat-green-300 hover:text-eat-olive-300 ml-4">
-          <x-icons.bell class="mt-1" />
-          <p class="text-xs">Ordenar</p>
+        <div class="flex flex-col">
+          <div>
+            {{$qty}} Gramos
+          </div><!-- 2 -->
+          {{-- <x-icons.add class="text-eat-olive-500 cursor-pointer ml-2" /> --}}
+          <div wire:click.debounce.150ms="addRecipe()" class="text-center flex flex-col items-center bg-eat-green-500 text-eat-olive-500 rounded-md p-2 cursor-pointer
+                        hover:bg-eat-green-300 hover:text-eat-olive-300 ml-4">
+            <x-icons.bell class="mt-1" />
+            <p class="text-xs">Ordenar</p>
+          </div><!-- 3 -->
         </div>
       </div>
     </div>
