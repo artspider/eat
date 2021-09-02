@@ -101,7 +101,6 @@
 					</x-slot>
 					<x-utils.text-menu>Dashboard</x-utils.text-menu>
 				</x-utils.menu-item>
-
 				<x-utils.menu-item routeInMenu="admin-users">
 					<x-slot name="image">
 						<x-icons.users />

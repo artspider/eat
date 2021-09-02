@@ -10,16 +10,23 @@ module.exports = {
 
   theme: {
     extend: {
+      backgroundImage: theme => ({
+        bg1: "url('https://images.unsplash.com/photo-1495195129352-aeb325a55b65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1955&q=80')",
+      }),
       keyframes: {
         wiggle: {
           '0%, 100%': { transform: 'rotate(-3deg)' },
           '50%': { transform: 'rotate(3deg)' },
         },
       },
+      maxWidth: {
+        65: '650px',
+      },
       fontFamily: {
         sans: ['Nunito', ...defaultTheme.fontFamily.sans],
         montserrat: ['Montserrat'],
         raleway: ['Raleway'],
+        rubik: ['Rubik'],
       },
       colors: {
         transparent: 'transparent',
@@ -34,6 +41,7 @@ module.exports = {
           700: '#e8e8e0',
           800: '#deded6',
           900: '#d4d4cc',
+          1000: '#f9f9f2',
         },
         'eat-green': {
           50: '#edff45',

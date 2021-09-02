@@ -5,7 +5,7 @@ use App\Http\Controllers\DishController;
 use App\Http\Controllers\KitchenController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing-page');
 });
 
 Route::get('/admin', function () {
