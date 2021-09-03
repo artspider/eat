@@ -14,6 +14,7 @@ class DishOrder extends Model
         'order_id',
         'qty',
         'price',
-        'total'
+        'total',
+        'command'
     ];
 }

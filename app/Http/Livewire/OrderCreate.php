@@ -39,6 +39,7 @@ class OrderCreate extends ModalComponent
     public $table;
     public $note;
     public $waiter;
+    public $command = 1;
     public $delivery_time;
     public $buttonOrderEnabled = false;
 
@@ -391,7 +392,7 @@ class OrderCreate extends ModalComponent
         
         $order->save(); */
         $this->orderDetails($order->id);
-        $this->orderStatus($order->id);        
+        $this->orderStatus($order->id);
 
         $this->emit('success', 'orden creada...');
         $this->closeModal();
@@ -405,7 +406,8 @@ class OrderCreate extends ModalComponent
                 'order_id' => $order_id,
                 'qty' => $dish['qty'],
                 'price' => $dish['price'],
-                'total' => ($dish['price'] * $dish['qty'])
+                'total' => ($dish['price'] * $dish['qty']),
+                'command' => $this->command
             ]);
             $this->updateDishStock($dish['id']);
         }
