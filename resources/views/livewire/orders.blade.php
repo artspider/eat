@@ -24,9 +24,22 @@
         </div>
       </div>
     </div>
+
+    <div class="flex items-center mb-2">
+      <p class="mr-4">Fecha de la orden:</p>
+
+      @if ($anyDay)
+      <input wire:model="searchDate" type="date" class="ml-2 mr-4" disabled>
+      @else
+      <input wire:model="searchDate" type="date" class="ml-2 mr-4">
+      @endif
+      <input type="checkbox" name="" id="" wire:model="anyDay">
+      <label class="ml-2 mr-4" for=""> Cualquier día </label>
+
+    </div>
     @if ($orders && $orders->count())
     @php
-    $headers = array("ID", "Hora", "Cliente", "Mesa", "Total", "Status");
+    $headers = array("ID", "Hora", "Cliente", "Mesa", "Total", "Status", "Acciones") ;
     @endphp
 
     <table class="border-collapse w-full">
@@ -84,6 +97,20 @@
               class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
             <p class="text-sm font-montserrat text-center">{{$order->status->first()->status}}</p>
           </td>
+          <td
+            class="w-full lg:w-auto p-3 text-gray-800 border border-b lg:table-cell relative lg:static h-24 flex items-center justify-center md:h-auto">
+            <span
+              class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Acciones</span>
+            <div data-tippy-content="EditarOrden" data-placement="left"
+              onclick='Livewire.emit("openModal", "order-edit",  {{ json_encode(["order" => $order]) }})'
+              class="tooltip_order text-eat-olive-400 cursor-pointer">
+              <x-icons.edit class="" />
+
+              <!-- Inside existing Livewire component -->
+
+
+            </div>
+          </td>
         </tr>
         @empty
 
@@ -94,7 +121,7 @@
 
     @else
     <x-icons.no-recipes />
-    <x-utils.text class="text-center mb-6">¡Al parecer no hay ordenes aún!</x-utils.text>
+    <x-utils.text class="text-center mb-6">¡Todas las ordenes estan completadas!</x-utils.text>
     <hr class=" border-eat-olive-50 mb-6 ">
     @endif
 
